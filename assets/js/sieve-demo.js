@@ -183,15 +183,77 @@
     $("#panel").innerHTML = html;
   }
 
+  /* Which mesh catches which finding (index into checks()) */
+  var LAYERS = ["Trace", "Recompute", "Consistency", "Plausibility"];
+  var CAUGHT_AT = [{ check: 1, layer: 0 }, { check: 3, layer: 2 }, { check: 4, layer: 2 }, { check: 6, layer: 3 }];
+
+  function sieveVisHtml() {
+    var h = "<div class=\"sieve-vis\" id=\"sieve-vis\" aria-label=\"50 figures pass through four checks; four are caught\">";
+    h += "<button type=\"button\" class=\"btn btn-nacre sieve-cta\" id=\"pour-btn\" style=\"padding:9px 16px;font-size:.85rem\">Pour the figures through</button>";
+    LAYERS.forEach(function (l, i) {
+      var caught = CAUGHT_AT.filter(function (c) { return c.layer === i; }).length;
+      h += "<div class=\"mesh-label\" style=\"top:" + (78 + i * 62) + "px\">" + l + "<b>" + (caught ? caught + " caught" : "0 caught") + "</b></div><div class=\"mesh\" style=\"top:" + (78 + i * 62) + "px\"></div>";
+    });
+    h += "<div class=\"tray\"></div><div class=\"tray-label\">46 pass</div>";
+    for (var k = 0; k < 50; k++) h += "<span class=\"pearl\" data-p=\"" + k + "\"></span>";
+    CAUGHT_AT.forEach(function (c, j) { h += "<button type=\"button\" class=\"pearl caught\" data-catch=\"" + c.check + "\" aria-label=\"Caught at " + LAYERS[c.layer] + ": " + esc(checks()[c.check].title) + "\" data-cl=\"" + c.layer + "\" data-j=\"" + j + "\"></button>"; });
+    return h + "</div>";
+  }
+
+  function pearlTargets(vis) {
+    var w = vis.clientWidth, left = w < 560 ? 100 : 150, right = 18, span = Math.max(80, w - left - right);
+    var pass = [], top = [], caught = [];
+    for (var k = 0; k < 50; k++) {
+      var col = k % 25, row = Math.floor(k / 25);
+      pass.push([left + 8 + (col + (row ? 0.5 : 0)) * ((span - 24) / 25), 299 + row * 13]);
+      var seed = Math.sin(k * 12.9898) * 43758.5453; seed = seed - Math.floor(seed);
+      top.push([left + 8 + seed * (span - 30), 18 + ((k * 7) % 5) * 9]);
+    }
+    CAUGHT_AT.forEach(function (c, j) {
+      var sameLayerIndex = CAUGHT_AT.filter(function (x, i) { return x.layer === c.layer && i < j; }).length;
+      caught.push([left + span * (0.3 + 0.22 * sameLayerIndex + 0.12 * c.layer), 78 + c.layer * 62 - 21]);
+    });
+    return { pass: pass, top: top, caught: caught };
+  }
+
+  function placePearls(animate) {
+    var vis = $("#sieve-vis"); if (!vis) return;
+    var T = pearlTargets(vis);
+    var pearls = vis.querySelectorAll(".pearl:not(.caught)"), caught = vis.querySelectorAll(".pearl.caught");
+    var all = [];
+    pearls.forEach(function (p, k) { all.push([p, T.top[k], T.pass[k], k * 22]); });
+    caught.forEach(function (p, j) { all.push([p, T.top[j * 11], T.caught[j], 300 + j * 140]); });
+    if (!animate || reduceMotion()) {
+      all.forEach(function (a) { a[0].style.transition = "none"; a[0].style.transform = "translate(" + a[2][0] + "px," + a[2][1] + "px)"; });
+      return Promise.resolve();
+    }
+    all.forEach(function (a) { a[0].style.transition = "none"; a[0].style.transform = "translate(" + a[1][0] + "px," + a[1][1] + "px)"; });
+    void vis.offsetWidth;
+    all.forEach(function (a) { a[0].style.transition = ""; a[0].style.transitionDelay = a[3] + "ms"; a[0].style.transform = "translate(" + a[2][0] + "px," + a[2][1] + "px)"; });
+    return wait(2600);
+  }
+  function reduceMotion() { return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
+
   function renderSieve(revealCount) {
     var ch = checks();
-    var shown = typeof revealCount === "number" ? revealCount : ch.length;
-    var pass = 46, caught = ch.filter(function (x) { return x.v === "caught"; }).length;
-    var html = "<div class=\"panel-head\"><div><span class=\"eyebrow\" style=\"margin:0 0 8px\">Step 4 · The Sieve</span><h2>Checked before the verifier sees it</h2></div><p>There are four layers: trace, recompute, consistency and plausibility. Every figure is marked Passes or Caught, and a caught figure goes to a person.</p></div>";
-    html += "<div class=\"summary-strip\"><span><b>50</b> figures checked</span><span class=\"pill ok\">" + pass + " pass</span><span class=\"pill bad\">" + caught + " caught</span>" + (state.decision === null ? "<span class=\"pill warn\">1 needs your decision</span>" : "<span class=\"pill ok\">all resolved</span>") + "</div><div class=\"checks\">";
+    var caught = ch.filter(function (x) { return x.v === "caught"; }).length;
+    var html = "<div class=\"panel-head\"><div><span class=\"eyebrow\" style=\"margin:0 0 8px\">Step 4 · The Sieve</span><h2>Checked before the verifier sees it</h2></div><p>Fifty figures pass through four checks. Anything a check catches stops at that layer and goes to a person. Select a caught pearl to see why.</p></div>";
+    html += sieveVisHtml();
+    html += "<div class=\"summary-strip\" id=\"sieve-summary\"></div><div class=\"checks\" id=\"checks\"></div>";
+    $("#panel").innerHTML = html;
+    updateChecks(typeof revealCount === "number" ? revealCount : ch.length);
+    placePearls(false);
+    $("#pour-btn").addEventListener("click", function () { if (!state.running) placePearls(true); });
+  }
+
+  function updateChecks(shown) {
+    var ch = checks();
+    var caught = ch.filter(function (x) { return x.v === "caught"; }).length;
+    $("#sieve-summary").innerHTML = "<span><b>50</b> figures checked</span><span class=\"pill ok\">46 pass</span><span class=\"pill bad\">" + caught + " caught</span>" + (state.decision === null ? "<span class=\"pill warn\">1 needs your decision</span>" : "<span class=\"pill ok\">all resolved</span>");
+    var html = "";
     ch.forEach(function (x, i) {
       var pending = i >= shown;
-      html += "<article class=\"check " + (pending ? "pending" : x.v === "pass" ? "pass" : "caught") + "\"><span class=\"layer\">" + x.layer + "</span><div class=\"body\"><h4>" + esc(x.title) + "</h4><p>" + esc(x.body) + "</p></div><span class=\"verdict-cell\">" +
+      html += "<article class=\"check " + (pending ? "pending" : x.v === "pass" ? "pass" : "caught") + "\" id=\"check-" + i + "\"><span class=\"layer\">" + x.layer + "</span><div class=\"body\"><h4>" + esc(x.title) + "</h4><p>" + esc(x.body) + "</p></div><span class=\"verdict-cell\">" +
         (pending ? "<span class=\"pill none\">queued</span>" : x.v === "pass" ? "<span class=\"verdict pass\">Passes</span>" : "<span class=\"verdict fail\">Caught</span>") + "</span>";
       if (!pending && (x.docs || x.decision)) {
         html += "<div class=\"actions\">";
@@ -206,8 +268,7 @@
       }
       html += "</article>";
     });
-    html += "</div>";
-    $("#panel").innerHTML = html;
+    $("#checks").innerHTML = html;
   }
 
   function renderDeliverables() {
@@ -326,7 +387,12 @@
     if (t.dataset.step) { if (state.running) stopRun(); go(Number(t.dataset.step)); return; }
     if (t.dataset.doc) { openDoc(t.dataset.doc); return; }
     if (t.dataset.line) { openLine(t.dataset.line); return; }
-    if (t.dataset.decide) { state.decision = t.dataset.decide; renderSummary(); RENDER[state.step](); return; }
+    if (t.dataset.decide) { state.decision = t.dataset.decide; renderSummary(); if (state.step === 4) updateChecks(checks().length); else RENDER[state.step](); return; }
+    if (t.dataset.catch) {
+      var el = document.getElementById("check-" + t.dataset.catch);
+      if (el) { el.scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "center" }); el.classList.add("flash"); setTimeout(function () { el.classList.remove("flash"); }, 1600); }
+      return;
+    }
   });
   viewer.addEventListener("click", function (e) {
     var t = e.target.closest("button[data-doc]");
@@ -385,14 +451,15 @@
     mark(3, "done"); await wait(900);
 
     mark(4, "running"); go(4, { noRender: true });
+    renderSieve(0);
+    line("Pouring 50 figures through trace, recompute, consistency and plausibility…", "dim");
+    if (!state.skip) await placePearls(true);
     var n = checks().length;
-    for (var k = 0; k <= n; k++) {
-      renderSieve(k);
-      if (k > 0) {
-        var c = checks()[k - 1];
-        line((c.v === "pass" ? "✓ Passes · " : "! Caught · ") + c.title, c.v === "pass" ? "ok" : "warn");
-      }
-      await wait(650);
+    for (var k = 1; k <= n; k++) {
+      updateChecks(k);
+      var c = checks()[k - 1];
+      line((c.v === "pass" ? "✓ Passes · " : "! Caught · ") + c.title, c.v === "pass" ? "ok" : "warn");
+      await wait(420);
     }
     line("Sieve: 46 pass · 4 caught · 1 needs a reviewer", "warn");
     mark(4, "done"); await wait(700);
@@ -409,6 +476,9 @@
 
   document.getElementById("run-btn").addEventListener("click", run);
   document.getElementById("skip-btn").addEventListener("click", stopRun);
+
+  var rz = null;
+  window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { if (state.step === 4 && !state.running) placePearls(false); }, 150); });
 
   /* ---------------- Initial state: complete at rest ---------------- */
   state.readAll = true; state.flagsShown = true;

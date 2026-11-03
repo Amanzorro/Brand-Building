@@ -1,11 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48" fill="none" role="img" aria-label="Nokhada نوخذة">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 48" fill="none" role="img" aria-label="Nokhada نوخذة">
+  <defs><linearGradient id="n" x1="6" y1="4" x2="27" y2="21" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f4b9a6"/><stop offset=".5" stop-color="#c8b6f2"/><stop offset="1" stop-color="#8fe0d2"/></linearGradient></defs>
   <g transform="translate(0,6) scale(1.1)">
-    <path d="M8 4.5C16.5 8 23 13.5 26.5 21H9.5L8 4.5Z" fill="#17444f"/>
-    <path d="M8 4.5 9.5 21" stroke="#0b2229" stroke-width="1.4" stroke-linecap="round"/>
-    <path d="M3.5 24.5C9 28.5 23 28.5 28.5 24.5" stroke="#0b2229" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="24" cy="7.5" r="2.4" fill="#b07a3b"/>
+    <path d="M8 4.5C16.5 8 23 13.5 26.5 21H9.5L8 4.5Z" fill="url(#n)"/>
+    <path d="M8 4.5 9.5 21" stroke="#081e27" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M3.5 24.5C9 28.5 23 28.5 28.5 24.5" stroke="#081e27" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="24.2" cy="7.4" r="2.6" fill="#f1dfae"/>
   </g>
-  <text x="46" y="33" font-family="Newsreader, Georgia, serif" font-size="28" fill="#102127" letter-spacing="-0.3">Nokhada</text>
-  <line x1="168" y1="14" x2="168" y2="36" stroke="#102127" stroke-opacity=".25"/>
-  <text x="180" y="32" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="20" fill="#66767a">نوخذة</text>
+  <text x="46" y="33" font-family="'Bricolage Grotesque', sans-serif" font-weight="650" font-size="28" fill="#081e27" letter-spacing="-0.8">Nokhada</text>
+  <line x1="176" y1="14" x2="176" y2="36" stroke="#081e27" stroke-opacity=".25"/>
+  <text x="188" y="32" font-family="'Readex Pro', sans-serif" font-size="20" fill="#5d7880">نوخذة</text>
 </svg>

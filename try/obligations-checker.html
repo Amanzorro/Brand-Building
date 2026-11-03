@@ -8,7 +8,7 @@
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Readex+Pro:wght@300..600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -36,115 +36,38 @@
 
 <main id="main">
   <link rel="stylesheet" href="../assets/css/tools.css">
-  <section class="tool-hero">
+  <section class="stage-dark" id="checker-stage" style="padding-top:0">
     <div class="wrap">
-      <span class="eyebrow">Try it · Obligations Checker</span>
-      <h1>Which UAE climate rules apply to you?</h1>
-      <p class="lede">Answer eight questions to see which rules apply, what data each one needs and what your two-week diagnostic would cover. It takes about two minutes, and your answers stay in your browser.</p>
+      <div class="tool-hero">
+        <span class="eyebrow">Try it · Obligations Checker</span>
+        <h1>Which UAE climate rules <span class="sheen">apply to you?</span></h1>
+        <p class="lede">Eight quick questions. Watch your obligations map take shape as you answer. It takes about two minutes, and nothing leaves your browser.</p>
+      </div>
+      <div class="wizard">
+        <div style="min-width:0">
+          <div class="necklace" id="necklace" aria-label="Progress"></div>
+          <div class="qcard" id="qcard"></div>
+        </div>
+        <aside class="compass-card" aria-label="Your obligations map">
+          <div class="compass-head"><h3>Your obligations map</h3><span class="count" id="compass-count"></span></div>
+          <svg class="compass" id="compass" viewBox="-56 -6 532 432" role="group" aria-label="Obligations by status"></svg>
+          <div class="legend"><span class="pill applies">Applies</span><span class="pill likely">Likely</span><span class="pill check">Check</span><span class="pill none">Not indicated</span></div>
+          <p class="compass-note">Points move toward the centre as obligations become more certain. Select one to read about it.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <section class="tool-section">
+  <section id="results" style="padding-top:clamp(48px,6vw,80px)">
     <div class="wrap">
-      <div class="example-banner" id="example-banner">
-        <span data-msg><strong>Example:</strong> a Dubai logistics company with a free-zone warehouse. Change any answer to make it yours.</span>
-        <span style="display:flex;gap:16px;flex-wrap:wrap"><button type="button" class="linkish" id="start-fresh">Start with a blank form</button><button type="button" class="linkish" id="load-example">Load the example</button></span>
+      <div class="section-head" style="margin-bottom:28px">
+        <span class="eyebrow">The details</span>
+        <h2>Your obligations, in plain language.</h2>
+        <p>This updates as you answer above. Each item says why it applies to you, what it asks for and where the rule comes from.</p>
       </div>
-
-      <div class="checker">
-        <form id="checker-form" onsubmit="return false">
-          <fieldset class="q">
-            <legend><span class="qn">01</span>Where are you established?</legend>
-            <p class="hint">Select all that apply.</p>
-            <div class="opts">
-              <label class="opt"><input type="checkbox" name="where" value="ad-main" id="w-ad"><span>Abu Dhabi (mainland)</span></label>
-              <label class="opt"><input type="checkbox" name="where" value="dxb-main" id="w-dxb"><span>Dubai (mainland)</span></label>
-              <label class="opt"><input type="checkbox" name="where" value="shj" id="w-shj"><span>Sharjah</span></label>
-              <label class="opt"><input type="checkbox" name="where" value="other-em" id="w-oth"><span>Other emirates</span></label>
-              <label class="opt"><input type="checkbox" name="where" value="difc" id="w-difc"><span>DIFC</span></label>
-              <label class="opt"><input type="checkbox" name="where" value="adgm" id="w-adgm"><span>ADGM</span></label>
-              <label class="opt"><input type="checkbox" name="where" value="fz" id="w-fz"><span>Another free zone</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="q">
-            <legend><span class="qn">02</span>What's your main sector?</legend>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="sector" value="industry" id="s-ind"><span>Industry &amp; manufacturing</span></label>
-              <label class="opt"><input type="radio" name="sector" value="energy" id="s-en"><span>Energy &amp; utilities</span></label>
-              <label class="opt"><input type="radio" name="sector" value="logistics" id="s-log"><span>Logistics &amp; transport</span></label>
-              <label class="opt"><input type="radio" name="sector" value="realestate" id="s-re"><span>Real estate &amp; construction</span></label>
-              <label class="opt"><input type="radio" name="sector" value="finance" id="s-fin"><span>Banking, insurance &amp; investment</span></label>
-              <label class="opt"><input type="radio" name="sector" value="gov" id="s-gov"><span>Government &amp; GRE</span></label>
-              <label class="opt"><input type="radio" name="sector" value="services" id="s-svc"><span>Services &amp; other</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="q">
-            <legend><span class="qn">03</span>Roughly how much do you emit each year?</legend>
-            <p class="hint">Scope 1 and 2 combined. A rough guess is fine. If you have no idea, choose "Don't know yet".</p>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="size" value="lt10" id="z-1"><span>Under 10,000 tCO₂e</span></label>
-              <label class="opt"><input type="radio" name="size" value="10to100" id="z-2"><span>10,000–100,000</span></label>
-              <label class="opt"><input type="radio" name="size" value="100to500" id="z-3"><span>100,000–500,000</span></label>
-              <label class="opt"><input type="radio" name="size" value="gte500" id="z-4"><span>500,000 or more</span></label>
-              <label class="opt"><input type="radio" name="size" value="unknown" id="z-5"><span>Don't know yet</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="q">
-            <legend><span class="qn">04</span>Do you export any of these to the EU?</legend>
-            <p class="hint">These are the goods covered by the EU carbon border mechanism (CBAM).</p>
-            <div class="opts">
-              <label class="opt"><input type="checkbox" name="cbam" value="alu" id="c-alu"><span>Aluminium</span></label>
-              <label class="opt"><input type="checkbox" name="cbam" value="steel" id="c-st"><span>Iron &amp; steel</span></label>
-              <label class="opt"><input type="checkbox" name="cbam" value="cement" id="c-cem"><span>Cement</span></label>
-              <label class="opt"><input type="checkbox" name="cbam" value="fert" id="c-fert"><span>Fertilisers</span></label>
-              <label class="opt"><input type="checkbox" name="cbam" value="h2" id="c-h2"><span>Hydrogen</span></label>
-              <label class="opt"><input type="checkbox" name="cbam" value="elec" id="c-el"><span>Electricity</span></label>
-              <label class="opt"><input type="checkbox" name="cbam" value="none" id="c-none"><span>None of these</span></label>
-              <label class="opt"><input type="checkbox" name="cbam" value="unsure" id="c-uns"><span>Not sure</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="q">
-            <legend><span class="qn">05</span>Are you licensed by the CBUAE, CMA, DFSA or FSRA?</legend>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="licensed" value="yes" id="l-y"><span>Yes</span></label>
-              <label class="opt"><input type="radio" name="licensed" value="no" id="l-n"><span>No</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="q">
-            <legend><span class="qn">06</span>Do customers, lenders or investors ask you for emissions data?</legend>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="asks" value="yes" id="a-y"><span>Yes</span></label>
-              <label class="opt"><input type="radio" name="asks" value="no" id="a-n"><span>Not yet</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="q">
-            <legend><span class="qn">07</span>Do you own or finance buildings or infrastructure?</legend>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="assets" value="own" id="as-own"><span>We own or operate them</span></label>
-              <label class="opt"><input type="radio" name="assets" value="finance" id="as-fin"><span>We lend to or invest in them</span></label>
-              <label class="opt"><input type="radio" name="assets" value="both" id="as-both"><span>Both</span></label>
-              <label class="opt"><input type="radio" name="assets" value="no" id="as-no"><span>Neither</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="q">
-            <legend><span class="qn">08</span>Where is your emissions data today?</legend>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="data" value="none" id="d-0"><span>Nothing collected yet</span></label>
-              <label class="opt"><input type="radio" name="data" value="sheets" id="d-1"><span>Spreadsheets</span></label>
-              <label class="opt"><input type="radio" name="data" value="software" id="d-2"><span>Carbon software</span></label>
-              <label class="opt"><input type="radio" name="data" value="verified" id="d-3"><span>A verified inventory</span></label>
-            </div>
-          </fieldset>
-        </form>
-
-        <div class="checker-results" id="checker-results" aria-live="polite"></div>
+      <div class="results-grid">
+        <div class="ob-list" id="ob-list" aria-live="polite"></div>
+        <div class="side-stack" id="side-stack"></div>
       </div>
     </div>
   </section>

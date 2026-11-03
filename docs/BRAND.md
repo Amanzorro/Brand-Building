@@ -59,32 +59,42 @@ An adversarial pre-verification check, named after the nests of sieves pearl mer
 
 ## Visual identity
 
+### Concept: Nacre
+Nacre is the iridescent lining of a pearl oyster, laid down in thin layers over years. The identity uses it three ways:
+- **The sheen:** a blush-to-lilac-to-aqua gradient used sparingly on key phrases, primary buttons and the logo sail. It's never used for body text.
+- **Layers:** concentric rings (the hero "pearl", the obligations map) stand for evidence built up layer by layer, which is also what the Sieve checks.
+- **Deep water:** the drama comes from dark Gulf-water bands. Reading sections stay light and calm.
+
 ### Logo
-- **Mark:** a lateen dhow sail over a curved hull, with a brass pearl at the top of the mast (`assets/img/logo-mark.svg`)
-- **Wordmark:** "Nokhada" in Newsreader, with "نوخذة" in IBM Plex Sans Arabic after a hairline divider (`assets/img/logo-wordmark.svg`)
-- **Favicon:** the mark reversed out of Sea 900 (`assets/img/favicon.svg`)
-- Keep clear space equal to the pearl's diameter × 2. Don't recolour the pearl.
+- **Mark:** a lateen dhow sail in the nacre gradient, with a dark mast and hull and a pearl at the masthead (`assets/img/logo-mark.svg`). The line colour switches to light in dark mode.
+- **Wordmark:** "Nokhada" in Bricolage Grotesque SemiBold, with "نوخذة" in Readex Pro after a hairline divider (`assets/img/logo-wordmark.svg`)
+- **Favicon:** the mark on an Abyss square (`assets/img/favicon.svg`)
 
 ### Colour
 | Token | Hex | Use |
 |---|---|---|
-| Sea 900 | `#0B2229` | Dark panels, terminal, ink on light |
-| Sea 700 | `#17444F` | Logo sail |
-| Sea 500 | `#1F6F78` | Primary accent, links, emphasis |
-| Sea 300 | `#7FB3B5` | Tints, selection |
-| Sand 50 | `#FBF8F2` | Page background |
-| Sand 100 | `#F5EFE4` | Alternate sections |
-| Sand 300 | `#D9C9AC` | Rules on sand |
-| Brass 500 | `#B07A3B` | Highlights, numbering, the pearl (use sparingly) |
-| Pearl | `#FFFDF9` | Cards |
+| Abyss | `#06131A` | Deep-water bands, hero, CTA, dark-theme background |
+| Abyss 2 / 3 | `#0B1E26` / `#12303A` | Raised surfaces on dark |
+| Foam | `#E9F3F1` | Text on dark |
+| Foam 2 | `#A9BFBF` | Secondary text on dark |
+| Pearl | `#F2F5F5` | Light-theme background (cool, slightly sea-tinted) |
+| Pearl surface | `#FBFDFD` | Cards on light |
+| Ink | `#081E27` | Text on light |
+| Sea accent | `#0D6D6B` (light) / `#8FE0D2` (dark) | Links, labels, focus |
+| Nacre blush | `#F4B9A6` | Gradient stop |
+| Nacre lilac | `#C8B6F2` | Gradient stop |
+| Nacre aqua | `#8FE0D2` | Gradient stop |
+| Nacre gold | `#F1DFAE` | Gradient stop, map pins |
 
-The palette is sea and sand: the two elements that most define climate risk in the UAE. It deliberately avoids the leaf-green clichés of sustainability branding, which buyers increasingly read as greenwash.
+Status colours (Applies, Likely, Check, Passes, Caught) are a separate semantic set and never share the brand gradient.
 
 ### Typography
-- **Display:** Newsreader (serif, with italic for emphasis)
-- **Body:** IBM Plex Sans
-- **Arabic:** IBM Plex Sans Arabic
-- **Mono / labels:** IBM Plex Mono (eyebrows, terminal, data labels)
+- **Display:** Bricolage Grotesque (600–650, tight tracking). It's expressive enough to carry the brand without decoration.
+- **Body:** Hanken Grotesk
+- **Arabic:** Readex Pro, designed for Arabic and Latin together, used light (300) for body and medium for headings
+- **Mono / labels:** IBM Plex Mono for eyebrows, data labels and the terminal
+
+All of these are free on Google Fonts.
 
 ### Imagery
 - Prefer real product output (terminal sessions, evidence indexes, risk registers) over stock photography
