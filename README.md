@@ -7,37 +7,37 @@ It follows the Kith AI Lab model (Claude Code deployed inside the client, encode
 - `docs/RESEARCH.md`: a teardown of Kith AI Lab, notes on the UAE climate market and how each element maps across
 - `docs/BRAND.md`: name, positioning, voice, logo, colour, type and go-to-market notes
 
-## Site structure
+## How it's built
 
-Static HTML, CSS and JS with no build step. Host it anywhere (Cloudflare Pages, Netlify, GitHub Pages, S3).
+Static HTML, CSS and JS with no framework and no npm. The English pages are generated from `src/pages/*.html` by `src/build.py`, and the output is committed, so hosting needs no build step. The Arabic home page (`ar/index.html`) is hand-written.
 
 ```
-index.html            Home (EN)
-industry.html         Industry & exporters: GHG inventory, Climate Law/NRCC, CBAM, Scope 3
-finance.html          Banks, insurers & investors: climate risk, financed emissions, transition plans
-real-estate.html      Real estate & infrastructure: asset-level physical risk, energy/water/cooling
-climate-rules.html    UAE climate rules at a glance (review regularly; dated "last reviewed")
-security.html         Deployment models, data protection, controls
-try/index.html        "Try it" hub + what clients should expect (timeline, deliverables, pricing model)
-try/obligations-checker.html   Climate Obligations Checker (runs in the browser, no data leaves the page)
-try/sieve-demo.html   The Sieve: scripted demo on a fictional company's 44-document evidence pack
-insights/             Essays: The Sieve, Heat is the risk, Own your methodology
-ar/index.html         Arabic home page (RTL)
-assets/css/style.css  Design tokens and all styles (light and dark)
-assets/css/tools.css  Styles for the two tools
-assets/js/main.js     Mobile menu, scroll reveal, contact form
-assets/js/obligations.js  Checker rules and rendering (rules mirror climate-rules.html)
-assets/js/sieve-demo.js   Demo data, live calculations, Sieve checks, document viewer
+src/pages/            Page bodies — edit these
+src/build.py          Shared header/nav/footer + page list; writes the pages below
+index.html …          Generated English pages (root, insights/, try/)
+ar/index.html         Arabic home page (RTL, hand-written)
+assets/css/           style.css (tokens, light/dark) · tools.css (the two tools)
+assets/js/            main.js · obligations.js (checker) · sieve-demo.js (demo)
 assets/img/           Logo mark, wordmark, favicon (SVG)
+scripts/              check_links.py · build_artifact.py
+docs/                 RESEARCH.md · BRAND.md (not published)
+CLAUDE.md             Working rules for Claude agents and contributors
+vercel.json           Vercel headers; .vercelignore keeps docs/src/scripts off the site
 ```
-
-## Preview locally
 
 ```bash
-python3 -m http.server 8000
+python3 src/build.py             # rebuild after editing src/pages or src/build.py
+python3 scripts/check_links.py   # broken-link check
+python3 -m http.server 8000      # preview at http://localhost:8000
 ```
 
-Then open http://localhost:8000.
+CI (`.github/workflows/site-check.yml`) runs the build check, the link check and a JS syntax check on every pull request.
+
+## Deploying on Vercel
+1. Merge the site into `main`. Vercel deploys `main` as production.
+2. In Vercel: **Add New → Project → Import** `amanzorro/brand-building`. Grant the Vercel GitHub app access to the repo if asked.
+3. Framework preset: **Other**. Leave the build command and output directory empty, then deploy.
+4. Every pull request then gets its own preview URL, and every merge to `main` updates the live site at `<project>.vercel.app`. Add a custom domain such as `nokhada.ae` under **Settings → Domains** when you have one.
 
 ## Before going live
 1. **Regulatory review:** have UAE counsel or a climate-regulation adviser check `climate-rules.html` against the current MOCCAE, NRCC, emirate-level and financial-regulator texts. Deadlines, thresholds and penalties change, so update the "last reviewed" date each time.
@@ -54,5 +54,5 @@ Then open http://localhost:8000.
 
 **Sieve demo** (`try/sieve-demo.html`) uses a fictional client, Ras Saffa Logistics. The evidence pack has 44 documents, 18 of them in Arabic. Extraction is pre-recorded. The calculations, the four-layer Sieve, trace views and deliverables are computed live in the browser. Step 4 shows the Sieve visually: 50 pearls fall through four mesh layers, and the four caught ones stop at the layer that caught them and can be selected. Four planted issues are caught: a duplicate invoice, an out-of-period delivery note, three missing cooling invoices and an implausible July invoice that needs a reviewer's decision. Emission factors in the demo are **placeholders**. Replace them with cited values before showing it as anything other than illustrative.
 
-## Preview
-A private preview is published as a claude.ai artifact, and it can be shared from the artifact's Share menu. To republish after changes, the root `index.html` has to be unwrapped (title, meta and links, then body content). The other pages ship as they are.
+## claude.ai preview
+A private preview is also published as a claude.ai artifact. `python3 scripts/build_artifact.py` produces the bundle for republishing it.

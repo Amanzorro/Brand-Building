@@ -1,0 +1,8 @@
+# Keep internal material off the public site
+docs
+src
+scripts
+.github
+dist
+README.md
+CLAUDE.md

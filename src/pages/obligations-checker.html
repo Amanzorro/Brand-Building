@@ -1,0 +1,37 @@
+  <link rel="stylesheet" href="{P}assets/css/tools.css">
+  <section class="stage-dark" id="checker-stage" style="padding-top:0">
+    <div class="wrap">
+      <div class="tool-hero">
+        <span class="eyebrow">Try it · Obligations Checker</span>
+        <h1>Which UAE climate rules <span class="sheen">apply to you?</span></h1>
+        <p class="lede">Eight quick questions. Watch your obligations map take shape as you answer. It takes about two minutes, and nothing leaves your browser.</p>
+      </div>
+      <div class="wizard">
+        <div style="min-width:0">
+          <div class="necklace" id="necklace" aria-label="Progress"></div>
+          <div class="qcard" id="qcard"></div>
+        </div>
+        <aside class="compass-card" aria-label="Your obligations map">
+          <div class="compass-head"><h3>Your obligations map</h3><span class="count" id="compass-count"></span></div>
+          <svg class="compass" id="compass" viewBox="-56 -6 532 432" role="group" aria-label="Obligations by status"></svg>
+          <div class="legend"><span class="pill applies">Applies</span><span class="pill likely">Likely</span><span class="pill check">Check</span><span class="pill none">Not indicated</span></div>
+          <p class="compass-note">Points move toward the centre as obligations become more certain. Select one to read about it.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" style="padding-top:clamp(48px,6vw,80px)">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:28px">
+        <span class="eyebrow">The details</span>
+        <h2>Your obligations, in plain language.</h2>
+        <p>This updates as you answer above. Each item says why it applies to you, what it asks for and where the rule comes from.</p>
+      </div>
+      <div class="results-grid">
+        <div class="ob-list" id="ob-list" aria-live="polite"></div>
+        <div class="side-stack" id="side-stack"></div>
+      </div>
+    </div>
+  </section>
+  <script src="{P}assets/js/obligations.js" defer></script>
