@@ -1,4 +1,6 @@
-# Research: Kith AI Lab teardown, and how it maps to the UAE
+# Research: Kith AI Lab teardown, and a UAE climate-services pivot
+
+> **Pivot (November 2026):** the brand first mirrored Kith's focus on investment firms and now targets **climate services in the UAE**. Section 1 (the Kith teardown) still describes the operating model we follow. Sections 2–3 cover the UAE climate market and how the model maps onto it. The original investment-firm notes are in Section 5 for reference.
 
 _Compiled November 2026. Sources are listed at the end. Kith's own site (kithfinance.com) was not directly reachable from the build environment. The notes below come from search-indexed copies of its pages and third-party listings, so check them against the live site before relying on specifics._
 
@@ -44,7 +46,57 @@ _Compiled November 2026. Sources are listed at the end. Kith's own site (kithfin
 - **Thin compliance story** for a market where DFSA, FSRA, CMA, CBUAE and three separate data-protection regimes all apply.
 - **Unverified numeric claims.** We deliberately avoid unsourced statistics, which reads as more credible to institutional buyers here.
 
-## 2. The UAE market: why it needs its own version
+## 2. The UAE climate market: why there's demand now
+
+**Mandatory obligations (economy-wide)**
+- **Federal Climate Law:** Federal Decree-Law No. 11 of 2024 on the Reduction of Climate Change Effects. Issued August 2024, in force 30 May 2025. Public and private entities, in free zones as well as onshore, must measure and report their GHG emissions, keep records and take reduction measures. Secondary sources report fines of AED 50,000 to AED 2 million. Several advisers treated 30 May 2026 as the full-compliance date, and one source suggested an extension, so confirm with MOCCAE.
+- **National Register for Carbon Credits (NRCC):** Cabinet Resolution No. 67 of 2024, run by MOCCAE. Larger emitters (secondary sources cite ≥0.5 Mt CO₂e) must register, and smaller entities can register voluntarily. Verifiers need MOCCAE approval.
+- **Emirate-level systems:** Abu Dhabi has issued its own reporting system with thresholds, and other emirates and free zones may follow.
+
+**Financial sector**
+- UAE Sustainable Finance Working Group principles, applied by the CBUAE, CMA (formerly the SCA), DFSA and FSRA to licensed firms:
+  - Climate-related financial risks (November 2023): board oversight, and physical and transition risk built into strategy and risk management
+  - Sustainability-related disclosures (June 2024)
+  - Climate transition planning (February 2026)
+- **ISSB (IFRS S1/S2):** no confirmed UAE-wide mandate was found. The site describes our disclosure work as "aligned with the ISSB standards where you choose them".
+
+**Cross-border**
+- **EU CBAM:** the definitive period started on 1 January 2026, so EU importers of aluminium, iron and steel, cement, fertilisers and other covered goods now carry certificate liability. Aluminium dominates UAE exposure, which raises demand for installation-level embedded-emissions data from UAE producers.
+- Supply-chain pressure: Scope 3 questionnaires from multinational customers, lenders and investors.
+
+**Physical climate profile (why the methodology must be local)**
+- Cooling makes up a large share of building energy use, and district cooling is common, which affects Scope 2 accounting.
+- Water comes largely from energy-intensive desalination.
+- Extreme heat affects workforce rules, equipment derating and infrastructure wear.
+- Rare severe floods: in April 2024 the UAE recorded its heaviest rainfall since records began.
+
+**Why Claude Code fits**
+Climate evidence is document-heavy and bilingual: bills, invoices, logs, supplier replies and permits. The work also needs auditable, rerunnable calculations, a stated methodology and evidence traceable for verifiers. That suits an agent working in a code repository far better than a dashboard SaaS.
+
+## 3. Mapping: Kith → Nokhada (climate)
+
+| Kith AI Lab | Nokhada (UAE climate) | Why |
+|---|---|---|
+| "Claude Code for investment firms" | "Climate reporting and climate risk, built with Claude Code, for the UAE" | New regulatory demand, document-heavy work |
+| Encoded IC frameworks and playbooks | Encoded **methodology files**: boundary, emission factors, estimation rules, materiality | The methodology is what verifiers interrogate |
+| Connect to CRM, data rooms, PMS | Connect to ERP, utility and district-cooling invoices, fleet, BMS and meters, supplier inboxes, asset registers | The evidence lives there |
+| PE page | **Industry & exporters** (GHG inventory, Climate Law/NRCC, CBAM, Scope 3) | Largest new compliance population |
+| HF page | **Banks & investors** (climate-risk principles, financed emissions, transition plans, green finance) | Regulated, data-rich buyers. Keeps a bridge to the original finance audience |
+| — | **Real estate & infrastructure** (asset-level physical risk, cooling and water) | The UAE's biggest physical exposure |
+| — | **UAE climate rules** page | SEO and trust: one plain-language reference |
+| The Hunting Party ("Holds / Cracked") | **The Sieve** ("Passes / Caught"): adversarial pre-verification | Same adversarial idea, aimed at the climate buyer's real pain (verifier findings) |
+| "Replace $150–300K SaaS" | "Own your methodology" versus per-site carbon SaaS, with no unverified numbers | Credibility. Ownership matters more under audit |
+| English only | Bilingual site and outputs, with Arabic evidence read natively | Much of the evidence is in Arabic |
+
+## 4. Competitive landscape (to research further)
+- Carbon-accounting SaaS, global and regional
+- Big Four and boutique sustainability consultancies, typically project-based and spreadsheet-heavy
+- Verification bodies, who are partners rather than competitors (we must stay independent of verification)
+- Climate-risk data vendors (hazard layers), which are possible inputs to our workflows rather than rivals
+
+## 5. Archive: original investment-firm brief
+
+### 5a. UAE investment market (original brief)
 
 **Pools of capital**
 - Sovereign wealth funds and GREs (Abu Dhabi and Dubai): very large AUM, strict procurement, high sensitivity to data sovereignty
@@ -66,7 +118,7 @@ _Compiled November 2026. Sources are listed at the end. Kith's own site (kithfin
 - The working week runs Monday to Friday (with a Saturday–Sunday weekend since 2022)
 - Relationship-led selling: the majlis tradition, introductions and discretion
 
-## 3. Mapping: Kith → Nokhada
+### 5b. Mapping for investment firms (original brief)
 
 | Kith AI Lab | Nokhada (UAE) | Why |
 |---|---|---|
@@ -81,7 +133,8 @@ _Compiled November 2026. Sources are listed at the end. Kith's own site (kithfin
 | "Replace $150–300K SaaS" | "Own, don't rent" comparison with no unverified numbers | Credibility with institutional buyers |
 | Talks / events | Recommended: majlis-style roundtables in DIFC and ADGM | Fits local relationship-led selling |
 
-## 4. Sources
+
+## 6. Sources
 - CB Insights, Kith AI Lab company profile: https://www.cbinsights.com/company/kith-ai-lab
 - Kith OS home: https://www.kithfinance.com/
 - Kith OS, Private Equity: https://www.kithfinance.com/pe
@@ -92,3 +145,13 @@ _Compiled November 2026. Sources are listed at the end. Kith's own site (kithfin
 - Latham & Watkins, UAE capital markets regime updates: https://www.lw.com/en/insights/major-updates-recalibrate-the-uae-capital-markets-regime
 - King & Spalding, the 2025 CMA decree-laws: https://www.kslaw.com/insights/articles/a-new-era-for-uae-federal-securities-regulation-the-2025-cma-decree-laws-february-2026
 - Al Tamimi, UAE capital markets reset: https://www.tamimi.com/news/uae-capital-markets-reset-new-federal-laws-reshaping-the-regulatory-landscape/
+- Ropes & Gray, preparing for UAE GHG reporting requirements: https://www.ropesgray.com/en/insights/alerts/2026/04/preparing-for-new-uae-ghg-emissions-reporting-and-reduction-requirements
+- PwC, UAE Climate Change Law emissions reporting obligations: https://www.pwc.com/m1/en/services/tax/middle-east-tax-news-alerts/2025/uae-climate-change-law-mandatory-emissions-reporting-obligations.html
+- Crowe, Navigating UAE's Federal Climate Law: https://www.crowe.com/ae/news/navigating-uaes-federal-climate-law
+- The National, landmark UAE climate law: https://www.thenationalnews.com/news/uae/2025/06/02/landmark-uae-climate-law-aims-to-curb-emissions-and-boost-net-zero-ambitions
+- Reed Smith, UAE carbon credit register: https://www.reedsmith.com/en/perspectives/2024/12/new-carbon-credit-law-register-reporting-verification-trading-regime
+- CBUAE, Principles for the Effective Management of Climate-related Financial Risks: https://www.centralbank.ae/media/t3ipeg0u/uae-sustainable-finance-working-group-launches-the-uae-principles-for-the-effective-management-of-climate-related-financial-risks-en.pdf
+- Pinsent Masons, CBUAE climate risk expectations: https://www.pinsentmasons.com/out-law/analysis/how-uae-financial-firms-can-meet-new-cbuae-climate-risk-expectations
+- KPMG, ISSB adoption: https://kpmg.com/ae/en/insights/esg/adoption-of-the-issb-standards.html
+- IISD, Navigating the EU CBAM: https://iisd.org/publications/guide/navigating-eu-carbon-border-adjustment-mechanism
+- Ashurst, EU CBAM guide for importers and third-country producers: https://www.ashurstperkinscoie.com/en/insights/eu-cbam-a-guide-for-importers-and-third-country-producers/

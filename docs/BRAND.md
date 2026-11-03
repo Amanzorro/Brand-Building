@@ -2,9 +2,9 @@
 
 ## Name
 
-**Nokhada** (Arabic: نوخذة, Gulf Arabic, also romanised *nakhuda* or *nokhitha*) is the captain of a pearling dhow. In the Emirates' pearling era, the nokhada read the sea, chose the pearl banks, commanded the crew and decided when to dive.
+**Nokhada** (Arabic: نوخذة, Gulf Arabic, also romanised *nakhuda* or *nokhitha*) is the captain of a pearling dhow. In the Emirates' pearling era, the nokhada read the sea, the winds and the seasons, chose the pearl banks and decided when it was safe to dive.
 
-The metaphor: **your firm is the captain.** We build the vessel and the instruments, but the judgement and the decision about where to dive remain yours. That suits a business whose whole pitch is that the client's own judgement is the edge.
+The metaphor for a climate business: **reading the conditions and acting on evidence.** The client stays the captain. We build the instruments: a system that reads their data, applies their methodology and shows them where the risks are.
 
 - English: *Nokhada* (say "NOKH-ha-da")
 - Arabic: *نوخذة*
@@ -22,39 +22,40 @@ These candidates clashed with existing UAE or GCC businesses during a quick sear
 
 ## Positioning
 
-**For** UAE investment firms (private capital, public markets, family offices, sovereign and GRE teams)
-**who** have access to the same frontier models as everyone else,
-**Nokhada** deploys Claude Code inside the firm, wired to its data and encoded with its frameworks,
-**so that** the firm's own judgement is applied consistently across every deal, name and report,
-**unlike** global SaaS point tools, it is **owned by the firm, bilingual by default and built for UAE regulation.**
+**For** UAE organisations with new climate obligations and exposures (industry and exporters, banks and investors, real estate and infrastructure),
+**who** have their climate evidence spread across invoices, meters, logs and documents in two languages,
+**Nokhada** deploys Claude Code inside the organisation to build inventories, reporting packs and climate-risk analysis from that evidence,
+**so that** every reported number traces to its source and every method can be shown to a verifier, regulator or board,
+**unlike** carbon-accounting SaaS, it is **owned by the client, bilingual by default and built for UAE climate rules.**
 
 ### Tagline
-- Primary: **Your firm's judgement, on every desk.**
-- Arabic: **خبرة شركتكم، على كل مكتب.**
-- Short descriptor: *Claude Code for investment firms in the UAE.*
+- Primary: **Climate obligations, met from your own data.**
+- Arabic: **التزاماتكم المناخية، من بياناتكم أنتم.**
+- Short descriptor: *Climate reporting and climate risk, built with Claude Code, for the UAE.*
 
 ### Three pillars
-1. **Your context is the edge.** Frameworks, playbooks and past decisions, encoded.
-2. **Own, don't rent.** Everything lives in your repository and your tenancy.
-3. **Built for the Emirates.** Arabic, Sharia screening, DIFC/ADGM/onshore regulation and data residency.
+1. **Evidence, not estimates.** Every figure is traced to a document, and every estimate is labelled with its rule.
+2. **Own your methodology.** Methodology, calculation code and evidence trail all sit in the client's repository.
+3. **Built for the Emirates.** UAE Climate Law, NRCC, CBAM, financial-sector principles, Arabic evidence, district cooling and heat.
 
-### Signature method: the Majlis Test
-A structured adversarial review that takes a thesis apart one load-bearing assumption at a time. Verdicts are **Holds** or **Sinks**, never "inconclusive". It's the firm's most quotable idea, so use the name consistently.
+### Signature method: the Sieve
+An adversarial pre-verification check, named after the nests of sieves pearl merchants used to grade pearls. Every reported figure is traced, recomputed, checked for consistency and tested for plausibility. Verdicts are **Passes** or **Caught**. Its by-product is an evidence index verifiers can sample from directly. Use the name consistently.
 
 ## Voice
-- **Like a senior PM, not a marketer.** Short sentences in plain financial vocabulary (IC, CIM, variance to plan, LP letter).
-- **Specific over superlative.** Say "reads Arabic ADX disclosures", not "revolutionary AI".
-- **No unverified numbers.** Don't quote hours saved or ROI without a client-approved, sourced case. Label illustrative examples as illustrative.
-- **Respectful of local institutions.** The tool never makes Sharia rulings, never replaces the IC and never executes trades. Say so plainly.
+- **Like a careful verifier, not an activist or a marketer.** Precise, calm, evidence-first.
+- **Specific over superlative.** Say "reads district-cooling invoices in Arabic", not "AI-powered net zero".
+- **No unverified numbers.** Don't quote tonnes saved, hours saved or ROI without a sourced, client-approved case. Label illustrative examples as illustrative.
+- **Regulation stated carefully.** Name the instrument, date it and point readers to the issuing authority. We are not a law firm.
+- **No greenwashing language.** Avoid "carbon neutral", "eco-friendly" and "green" as adjectives for us or our clients. We help clients measure and report honestly.
 - **Bilingual is a principle.** Arabic copy is written for an Arabic reader, not translated word for word.
 
 ### Words we use / avoid
 | Use | Avoid |
 |---|---|
-| deploy, encode, connect, own | platform, revolutionise, disrupt, unlock |
-| your frameworks, your criteria | our AI, our proprietary model |
-| draft, first read, cited | autonomous, replaces analysts |
-| Holds / Sinks | maybe, inconclusive |
+| evidence, traced, methodology, verifier-ready | revolutionary, effortless, AI-powered sustainability |
+| measure, report, assess, plan | offset your way to net zero, carbon neutral |
+| Passes / Caught | roughly, ballpark |
+| deploy, encode, connect, own | platform, dashboard (for what we sell) |
 
 ## Visual identity
 
@@ -77,22 +78,21 @@ A structured adversarial review that takes a thesis apart one load-bearing assum
 | Brass 500 | `#B07A3B` | Highlights, numbering, the pearl (use sparingly) |
 | Pearl | `#FFFDF9` | Cards |
 
-The palette draws on Gulf water, dhow-sail canvas and a navigator's brass instruments. It avoids the gold-and-black clichés of Gulf luxury branding, which suits an advisory firm better.
+The palette is sea and sand: the two elements that most define climate risk in the UAE. It deliberately avoids the leaf-green clichés of sustainability branding, which buyers increasingly read as greenwash.
 
 ### Typography
 - **Display:** Newsreader (serif, with italic for emphasis)
 - **Body:** IBM Plex Sans
-- **Arabic:** IBM Plex Sans Arabic, designed as a companion to Plex Sans, so the two languages sit together naturally
+- **Arabic:** IBM Plex Sans Arabic
 - **Mono / labels:** IBM Plex Mono (eyebrows, terminal, data labels)
 
-All of these are free on Google Fonts.
-
 ### Imagery
-- Prefer real product output (terminal sessions, cited memos) over stock photography
-- If photography is used: Gulf coastline at dawn, dhow details, architecture with shade and texture. No glass-tower skylines and no robot hands.
+- Prefer real product output (terminal sessions, evidence indexes, risk registers) over stock photography
+- If photography is used: Gulf coastline, heat shimmer, cooling plant, dhow details. No polar bears, wind turbines in fields or hands holding seedlings.
 
 ## Go-to-market notes for the UAE
-- **Lead offer:** a fixed-fee, two-week diagnostic, where the written plan belongs to the client
-- **Events:** small majlis-style roundtables in DIFC and ADGM (Monday to Friday, not during Ramadan iftar hours), live-building an IC memo or running the Majlis Test on an anonymised thesis
-- **Channels:** introductions through fund administrators, law firms and placement agents, plus LinkedIn thought leadership from the founders in both languages
-- **Proof:** publish anonymised before/after case studies only with written client approval
+- **Lead offer:** a fixed-fee, two-week diagnostic that starts with an obligations map and runs one real site or one portfolio slice end to end
+- **Timing hooks:** Climate Law and NRCC reporting cycles, verifier engagement windows, EU importer requests for CBAM data, board and regulator calendars for banks
+- **Channels:** partnerships with verification bodies and audit firms (we prepare, they verify), industrial free zones and chambers of commerce, sustainable-finance events in DIFC and ADGM, and bilingual LinkedIn thought leadership
+- **Proof:** publish anonymised before-and-after case studies (verifier findings, time to close queries) only with written client approval
+- **Independence:** we don't verify our own clients' inventories. Say so. It builds trust with verifiers, who become a referral channel.

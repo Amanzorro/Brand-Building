@@ -166,7 +166,7 @@ h4 { font-size: 1.1rem; }
 .nav { display: flex; align-items: center; gap: 4px; }
 .nav a {
   text-decoration: none; color: var(--ink-2); font-size: 0.94rem;
-  padding: 8px 12px; border-radius: 8px;
+  padding: 8px 12px; border-radius: 8px; white-space: nowrap;
 }
 .nav a:hover { color: var(--ink); background: var(--bg-alt); }
 .nav a[aria-current="page"] { color: var(--ink); font-weight: 500; }
@@ -178,7 +178,7 @@ h4 { font-size: 1.1rem; }
   border-radius: 8px; padding: 8px 10px; font: inherit; font-size: 0.9rem; cursor: pointer;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1120px) {
   .menu-toggle { display: inline-block; }
   .nav {
     position: absolute; top: 68px; left: 0; right: 0;
@@ -404,8 +404,8 @@ table.compare { width: 100%; border-collapse: collapse; font-size: 0.96rem; min-
 
 /* Verdict tags (Majlis Test) */
 .verdict { display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; }
-.verdict.holds { background: color-mix(in srgb, #2f8f6b 16%, transparent); color: #2f8f6b; }
-.verdict.sinks { background: color-mix(in srgb, #b4532a 16%, transparent); color: #b4532a; }
+.verdict.pass { background: color-mix(in srgb, #2f8f6b 16%, transparent); color: #2f8f6b; }
+.verdict.fail { background: color-mix(in srgb, #b4532a 16%, transparent); color: #b4532a; }
 
 /* ---------- CTA / Contact ---------- */
 .cta { background: var(--panel); color: var(--panel-ink); border-radius: calc(var(--radius) * 1.5); padding: clamp(32px, 6vw, 64px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 60px); }
