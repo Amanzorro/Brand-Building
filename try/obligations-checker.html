@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Obligations Checker — Nokhada</title>
+  <meta name="description" content="Find out which UAE climate rules apply to your organisation, what data each one needs and what a diagnostic would cover.">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="Nokhada home">
+      <img src="../assets/img/logo-mark.svg" width="30" height="30" alt="">
+      <span class="brand-word">Nokhada</span><span class="brand-ar" lang="ar">نوخذة</span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="../industry.html">Industry</a>
+      <a href="../finance.html">Finance</a>
+      <a href="../real-estate.html">Real Estate</a>
+      <a href="../climate-rules.html">Climate Rules</a>
+      <a href="../insights/index.html">Insights</a>
+      <a href="../try/index.html" aria-current="page">Try it</a>
+      <a class="lang" href="../ar/index.html" lang="ar" hreflang="ar">العربية</a>
+      <a class="btn btn-primary" href="../index.html#contact">Book a diagnostic</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <link rel="stylesheet" href="../assets/css/tools.css">
+  <section class="tool-hero">
+    <div class="wrap">
+      <span class="eyebrow">Try it · Obligations Checker</span>
+      <h1>Which UAE climate rules apply to you?</h1>
+      <p class="lede">Answer eight questions to see which rules apply, what data each one needs and what your two-week diagnostic would cover. It takes about two minutes, and your answers stay in your browser.</p>
+    </div>
+  </section>
+
+  <section class="tool-section">
+    <div class="wrap">
+      <div class="example-banner" id="example-banner">
+        <span data-msg><strong>Example:</strong> a Dubai logistics company with a free-zone warehouse. Change any answer to make it yours.</span>
+        <span style="display:flex;gap:16px;flex-wrap:wrap"><button type="button" class="linkish" id="start-fresh">Start with a blank form</button><button type="button" class="linkish" id="load-example">Load the example</button></span>
+      </div>
+
+      <div class="checker">
+        <form id="checker-form" onsubmit="return false">
+          <fieldset class="q">
+            <legend><span class="qn">01</span>Where are you established?</legend>
+            <p class="hint">Select all that apply.</p>
+            <div class="opts">
+              <label class="opt"><input type="checkbox" name="where" value="ad-main" id="w-ad"><span>Abu Dhabi (mainland)</span></label>
+              <label class="opt"><input type="checkbox" name="where" value="dxb-main" id="w-dxb"><span>Dubai (mainland)</span></label>
+              <label class="opt"><input type="checkbox" name="where" value="shj" id="w-shj"><span>Sharjah</span></label>
+              <label class="opt"><input type="checkbox" name="where" value="other-em" id="w-oth"><span>Other emirates</span></label>
+              <label class="opt"><input type="checkbox" name="where" value="difc" id="w-difc"><span>DIFC</span></label>
+              <label class="opt"><input type="checkbox" name="where" value="adgm" id="w-adgm"><span>ADGM</span></label>
+              <label class="opt"><input type="checkbox" name="where" value="fz" id="w-fz"><span>Another free zone</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend><span class="qn">02</span>What's your main sector?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="sector" value="industry" id="s-ind"><span>Industry &amp; manufacturing</span></label>
+              <label class="opt"><input type="radio" name="sector" value="energy" id="s-en"><span>Energy &amp; utilities</span></label>
+              <label class="opt"><input type="radio" name="sector" value="logistics" id="s-log"><span>Logistics &amp; transport</span></label>
+              <label class="opt"><input type="radio" name="sector" value="realestate" id="s-re"><span>Real estate &amp; construction</span></label>
+              <label class="opt"><input type="radio" name="sector" value="finance" id="s-fin"><span>Banking, insurance &amp; investment</span></label>
+              <label class="opt"><input type="radio" name="sector" value="gov" id="s-gov"><span>Government &amp; GRE</span></label>
+              <label class="opt"><input type="radio" name="sector" value="services" id="s-svc"><span>Services &amp; other</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend><span class="qn">03</span>Roughly how much do you emit each year?</legend>
+            <p class="hint">Scope 1 and 2 combined. A rough guess is fine. If you have no idea, choose "Don't know yet".</p>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="size" value="lt10" id="z-1"><span>Under 10,000 tCO₂e</span></label>
+              <label class="opt"><input type="radio" name="size" value="10to100" id="z-2"><span>10,000–100,000</span></label>
+              <label class="opt"><input type="radio" name="size" value="100to500" id="z-3"><span>100,000–500,000</span></label>
+              <label class="opt"><input type="radio" name="size" value="gte500" id="z-4"><span>500,000 or more</span></label>
+              <label class="opt"><input type="radio" name="size" value="unknown" id="z-5"><span>Don't know yet</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend><span class="qn">04</span>Do you export any of these to the EU?</legend>
+            <p class="hint">These are the goods covered by the EU carbon border mechanism (CBAM).</p>
+            <div class="opts">
+              <label class="opt"><input type="checkbox" name="cbam" value="alu" id="c-alu"><span>Aluminium</span></label>
+              <label class="opt"><input type="checkbox" name="cbam" value="steel" id="c-st"><span>Iron &amp; steel</span></label>
+              <label class="opt"><input type="checkbox" name="cbam" value="cement" id="c-cem"><span>Cement</span></label>
+              <label class="opt"><input type="checkbox" name="cbam" value="fert" id="c-fert"><span>Fertilisers</span></label>
+              <label class="opt"><input type="checkbox" name="cbam" value="h2" id="c-h2"><span>Hydrogen</span></label>
+              <label class="opt"><input type="checkbox" name="cbam" value="elec" id="c-el"><span>Electricity</span></label>
+              <label class="opt"><input type="checkbox" name="cbam" value="none" id="c-none"><span>None of these</span></label>
+              <label class="opt"><input type="checkbox" name="cbam" value="unsure" id="c-uns"><span>Not sure</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend><span class="qn">05</span>Are you licensed by the CBUAE, CMA, DFSA or FSRA?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="licensed" value="yes" id="l-y"><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="licensed" value="no" id="l-n"><span>No</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend><span class="qn">06</span>Do customers, lenders or investors ask you for emissions data?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="asks" value="yes" id="a-y"><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="asks" value="no" id="a-n"><span>Not yet</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend><span class="qn">07</span>Do you own or finance buildings or infrastructure?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="assets" value="own" id="as-own"><span>We own or operate them</span></label>
+              <label class="opt"><input type="radio" name="assets" value="finance" id="as-fin"><span>We lend to or invest in them</span></label>
+              <label class="opt"><input type="radio" name="assets" value="both" id="as-both"><span>Both</span></label>
+              <label class="opt"><input type="radio" name="assets" value="no" id="as-no"><span>Neither</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="q">
+            <legend><span class="qn">08</span>Where is your emissions data today?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="data" value="none" id="d-0"><span>Nothing collected yet</span></label>
+              <label class="opt"><input type="radio" name="data" value="sheets" id="d-1"><span>Spreadsheets</span></label>
+              <label class="opt"><input type="radio" name="data" value="software" id="d-2"><span>Carbon software</span></label>
+              <label class="opt"><input type="radio" name="data" value="verified" id="d-3"><span>A verified inventory</span></label>
+            </div>
+          </fieldset>
+        </form>
+
+        <div class="checker-results" id="checker-results" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+  <script src="../assets/js/obligations.js" defer></script>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../index.html"><img src="../assets/img/logo-mark.svg" width="30" height="30" alt=""><span class="brand-word">Nokhada</span></a>
+        <p class="small muted" style="margin-top:14px;max-width:34ch">Claude Code deployments for climate reporting and climate risk in the United Arab Emirates.</p>
+      </div>
+      <div>
+        <h4>Who we serve</h4>
+        <ul>
+          <li><a href="../industry.html">Industry &amp; exporters</a></li>
+          <li><a href="../finance.html">Banks &amp; investors</a></li>
+          <li><a href="../real-estate.html">Real estate &amp; infrastructure</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../climate-rules.html">UAE climate rules</a></li>
+          <li><a href="../security.html">Security &amp; data residency</a></li>
+          <li><a href="../insights/index.html">Insights</a></li>
+          <li><a href="../ar/index.html" lang="ar">العربية</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@nokhada.ae">hello@nokhada.ae</a></li>
+          <li>Dubai · Abu Dhabi</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>© <span data-year>2026</span> Nokhada. Nokhada is an independent firm and is not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic, PBC. Nothing on this site is legal, regulatory or investment advice.</p>
+      <p><a href="../security.html">Data protection</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

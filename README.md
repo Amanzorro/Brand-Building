@@ -18,10 +18,16 @@ finance.html          Banks, insurers & investors: climate risk, financed emissi
 real-estate.html      Real estate & infrastructure: asset-level physical risk, energy/water/cooling
 climate-rules.html    UAE climate rules at a glance (review regularly; dated "last reviewed")
 security.html         Deployment models, data protection, controls
+try/index.html        "Try it" hub + what clients should expect (timeline, deliverables, pricing model)
+try/obligations-checker.html   Climate Obligations Checker (runs in the browser, no data leaves the page)
+try/sieve-demo.html   The Sieve: scripted demo on a fictional company's 44-document evidence pack
 insights/             Essays: The Sieve, Heat is the risk, Own your methodology
 ar/index.html         Arabic home page (RTL)
 assets/css/style.css  Design tokens and all styles (light and dark)
-assets/js/main.js     Mobile menu, scroll reveal, terminal animation, contact form
+assets/css/tools.css  Styles for the two tools
+assets/js/main.js     Mobile menu, scroll reveal, contact form
+assets/js/obligations.js  Checker rules and rendering (rules mirror climate-rules.html)
+assets/js/sieve-demo.js   Demo data, live calculations, Sieve checks, document viewer
 assets/img/           Logo mark, wordmark, favicon (SVG)
 ```
 
@@ -37,7 +43,16 @@ Then open http://localhost:8000.
 1. **Regulatory review:** have UAE counsel or a climate-regulation adviser check `climate-rules.html` against the current MOCCAE, NRCC, emirate-level and financial-regulator texts. Deadlines, thresholds and penalties change, so update the "last reviewed" date each time.
 2. **Trademark and domain clearance** for "Nokhada" / "نوخذة" (see `docs/BRAND.md`).
 3. **Contact email:** `hello@nokhada.ae` is a placeholder. Change it in `assets/js/main.js` (`CONTACT_EMAIL`) and in the footer of each page.
-4. **Contact form:** it currently opens the visitor's mail client. Point it at a real form endpoint or CRM.
+4. **Contact form:** it currently prepares the message for the visitor to copy and send from their own email. Point it at a real form endpoint or CRM.
 5. **Arabic copy:** get a native editor to review `ar/index.html`, then add Arabic versions of the inner pages.
 6. **Credentials:** add a team section with climate and verification credentials, such as GHG Protocol experience, ISO 14064 expertise and sector backgrounds. Buyers in this market will look for them.
 7. **Security pack:** `security.html` offers one. Prepare it before launch.
+
+## The tools
+
+**Obligations Checker** (`try/obligations-checker.html`): eight questions produce an obligations map with Applies, Likely, Check or Not indicated for each rule, a data checklist, a readiness gauge and a tailored week 1 and week 2 diagnostic plan. The rules are in `evaluate()` in `assets/js/obligations.js`. Keep them in step with `climate-rules.html`.
+
+**Sieve demo** (`try/sieve-demo.html`) uses a fictional client, Ras Saffa Logistics. The evidence pack has 44 documents, 18 of them in Arabic. Extraction is pre-recorded. The calculations, the four-layer Sieve, trace views and deliverables are computed live in the browser. Four planted issues are caught: a duplicate invoice, an out-of-period delivery note, three missing cooling invoices and an implausible July invoice that needs a reviewer's decision. Emission factors in the demo are **placeholders**. Replace them with cited values before showing it as anything other than illustrative.
+
+## Preview
+A private preview is published as a claude.ai artifact, and it can be shared from the artifact's Share menu. To republish after changes, the root `index.html` has to be unwrapped (title, meta and links, then body content). The other pages ship as they are.
