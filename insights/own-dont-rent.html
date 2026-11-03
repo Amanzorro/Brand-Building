@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Own, don't rent — Nokhada</title>
+  <meta name="description" content="Why a firm's AI should sit in its own repository rather than in a vendor's product.">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="Nokhada home">
+      <img src="../assets/img/logo-mark.svg" width="30" height="30" alt="">
+      <span class="brand-word">Nokhada</span><span class="brand-ar" lang="ar">نوخذة</span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="../private-capital.html">Private Capital</a>
+      <a href="../public-markets.html">Public Markets</a>
+      <a href="../family-offices.html">Family Offices &amp; Sovereign</a>
+      <a href="../security.html">Security</a>
+      <a href="../insights/index.html" aria-current="page">Insights</a>
+      <a class="lang" href="../ar/index.html" lang="ar" hreflang="ar">العربية</a>
+      <a class="btn btn-primary" href="../index.html#contact">Book a diagnostic</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section>
+    <div class="wrap">
+      <article class="article">
+        <header class="article-head">
+          <span class="eyebrow">Operating model</span>
+          <h1>Own, don't rent</h1>
+          <p class="lede">Why a firm's AI should sit in its own repository rather than in a vendor's product, and what that means for cost, control and compliance.</p>
+          <div class="article-meta"><span>Nokhada</span><span>5 min read</span></div>
+        </header>
+        <div class="prose">
+          <p>The first wave of AI in investment firms looked like the SaaS wave before it. A tool for screening, another for memo drafting, a third for portfolio reporting and a fourth for meeting notes. Each one came with a login, a per-seat price and a slide promising transformation.</p>
+          <p>Two years on, many firms have a stack of subscriptions that don't talk to each other. Each holds its own copy of the firm's data, applies its own idea of what makes a good deal and gets more expensive every renewal.</p>
+
+          <h2>The value is in the encoding</h2>
+          <p>Strip away the interface and most of these tools do the same thing. They put context in front of a frontier model and shape what comes back. The model is a commodity available to everyone. The <em>context</em> is your criteria, your playbooks, your templates and the record of your past decisions, and that's what makes the output yours.</p>
+          <p>When that context lives in a vendor's product, you're renting back your own judgement. When you leave, it stays behind.</p>
+
+          <h2>What owning looks like</h2>
+          <p>A Nokhada deployment lives in your firm's own repository and runs in your own environment:</p>
+          <ul>
+            <li><strong>Reference files</strong> in plain, readable documents that set out your thesis, criteria, red flags, style guides and sector playbooks. Partners can read them, argue about them and change them.</li>
+            <li><strong>Workflows</strong> as version-controlled instructions and scripts for Claude Code, reviewed and changed the way engineers change code.</li>
+            <li><strong>Connectors</strong> to your systems of record, scoped to the access each team already has.</li>
+            <li><strong>Logs</strong> of everything the system has read, done and produced, in your SIEM.</li>
+          </ul>
+          <p>Nothing important sits on our servers. If you stop working with us tomorrow, all of it keeps running.</p>
+
+          <h2>Why this matters more in the UAE</h2>
+          <p>Ownership here is about more than cost. Firms in DIFC and ADGM and onshore answer to regulators who expect them to explain their outsourcing arrangements, their data flows and how their technology reaches conclusions. "The vendor handles it" is a weak answer in an inspection. "Here's the repository, here are the logs, here's the reference file that sets the criterion" is a strong one.</p>
+          <p>Data residency adds another layer. With your own deployment, you decide where every component runs and which route model inference takes, and you can document it for your DPO. With a collection of SaaS tools, you inherit each vendor's choices.</p>
+
+          <h2>The economics</h2>
+          <p>Ownership changes the cost structure as well. In place of open-ended per-seat licences, you pay a fixed fee to build, a retainer to extend and model usage at cost. The more of your team uses it, the better the economics get, which is the opposite of per-seat pricing.</p>
+
+          <div class="callout">
+            <p><strong>Not anti-vendor.</strong> Your systems of record, such as CRM, fund administration and market data, stay as they are. What changes is the intelligence layer on top. That should belong to you.</p>
+          </div>
+
+          <p>If you want to see what this would look like at your firm, the <a href="../index.html#contact">two-week diagnostic</a> produces exactly that plan.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../index.html"><img src="../assets/img/logo-mark.svg" width="30" height="30" alt=""><span class="brand-word">Nokhada</span></a>
+        <p class="small muted" style="margin-top:14px;max-width:34ch">Claude Code deployments for investment firms in the United Arab Emirates.</p>
+      </div>
+      <div>
+        <h4>Who we serve</h4>
+        <ul>
+          <li><a href="../private-capital.html">Private Capital</a></li>
+          <li><a href="../public-markets.html">Public Markets</a></li>
+          <li><a href="../family-offices.html">Family Offices &amp; Sovereign</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../security.html">Security &amp; data residency</a></li>
+          <li><a href="../insights/index.html">Insights</a></li>
+          <li><a href="../ar/index.html" lang="ar">العربية</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@nokhada.ae">hello@nokhada.ae</a></li>
+          <li>Dubai · Abu Dhabi</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>© <span data-year>2026</span> Nokhada. Nokhada is an independent firm and is not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic, PBC. Nothing on this site is investment advice or a financial promotion.</p>
+      <p><a href="../security.html">Data protection</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

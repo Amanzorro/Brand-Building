@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Security &amp; Data Residency — Nokhada</title>
+  <meta name="description" content="How Nokhada deploys Claude Code inside UAE investment firms: your infrastructure, documented data flows, and design around PDPL, DIFC, ADGM, DFSA, FSRA, CMA and CBUAE requirements.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Nokhada home">
+      <img src="assets/img/logo-mark.svg" width="30" height="30" alt="">
+      <span class="brand-word">Nokhada</span><span class="brand-ar" lang="ar">نوخذة</span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="private-capital.html">Private Capital</a>
+      <a href="public-markets.html">Public Markets</a>
+      <a href="family-offices.html">Family Offices &amp; Sovereign</a>
+      <a href="security.html" aria-current="page">Security</a>
+      <a href="insights/index.html">Insights</a>
+      <a class="lang" href="ar/index.html" lang="ar" hreflang="ar">العربية</a>
+      <a class="btn btn-primary" href="index.html#contact">Book a diagnostic</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Security · Data residency · Regulation</span>
+      <h1>Built to pass your compliance review, not to work around it.</h1>
+      <p class="lede">Every deployment starts with your regulator, your data-protection officer and your information-security policy. Nokhada deploys into your environment, documents every data flow and leaves you with a system you can explain to an inspector.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Deployment models</span>
+        <h2>Your infrastructure, your choice.</h2>
+      </div>
+      <div class="grid grid-3 reveal">
+        <article class="card">
+          <span class="tag">Most common</span>
+          <h3>Your cloud tenancy</h3>
+          <p>Runs inside your own AWS, Azure or Google Cloud account, using in-country UAE regions wherever your workloads need them. We never hold your data.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Highest control</span>
+          <h3>On-premise / private cloud</h3>
+          <p>Tooling, connectors and reference files run on your own hardware or private cloud, with model calls going out through your approved gateway.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Mixed</span>
+          <h3>Hybrid</h3>
+          <p>Sensitive systems stay on-premise and less sensitive workflows run in the cloud. Data classification decides which is which.</p>
+        </article>
+      </div>
+      <div class="card reveal" style="margin-top:20px">
+        <span class="tag">Where inference runs</span>
+        <h3>We tell you exactly where the model runs.</h3>
+        <p>Claude models are available through Anthropic's API and through major cloud platforms such as Amazon Bedrock and Google Cloud Vertex AI. Which models are offered in which regions varies and changes over time. During the diagnostic we confirm the options for your required jurisdiction, document where prompts and outputs are processed, and agree the route with your compliance team before anything goes live. If a workflow can't meet your residency requirement, we say so and don't build it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Regulatory map</span>
+        <h2>The rules we design around.</h2>
+        <p>Which regimes apply depends on where your firm is licensed and whose data you process. We work alongside your counsel, giving them the documentation they need to reach a view.</p>
+      </div>
+      <div class="table-wrap reveal">
+        <table class="compare">
+          <thead>
+            <tr><th scope="col">Regime</th><th scope="col">Applies to</th><th scope="col">What we provide</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">UAE Federal PDPL<br><span class="small muted">Federal Decree-Law No. 45 of 2021</span></th><td>Onshore processing of personal data</td><td class="us">Data-flow maps, processing records and input to your DPIA</td></tr>
+            <tr><th scope="row">DIFC Data Protection Law<br><span class="small muted">DIFC Law No. 5 of 2020 and Regulations</span></th><td>DIFC-registered entities</td><td class="us">Documentation for transfer assessments and for the DIFC's requirements on processing through autonomous and semi-autonomous systems</td></tr>
+            <tr><th scope="row">ADGM Data Protection Regulations 2021</th><td>ADGM-registered entities</td><td class="us">Processing records, transfer analysis and processor terms</td></tr>
+            <tr><th scope="row">DFSA &amp; FSRA rulebooks</th><td>Authorised firms in DIFC and ADGM</td><td class="us">Outsourcing and technology-risk documentation, plus record-keeping logs</td></tr>
+            <tr><th scope="row">Capital Market Authority<br><span class="small muted">formerly the SCA</span></th><td>Onshore securities and fund activity</td><td class="us">Audit trails and governance documentation for research and reporting workflows</td></tr>
+            <tr><th scope="row">CBUAE</th><td>Banks and their investment arms</td><td class="us">Support for outsourcing notifications and operational-resilience evidence</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted reveal" style="margin-top:16px">Nokhada is not a law firm and does not give legal advice. Your counsel and compliance function decide whether a deployment meets your obligations.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div class="reveal">
+        <span class="eyebrow">Controls</span>
+        <h2>Standard in every deployment.</h2>
+      </div>
+      <div class="reveal">
+        <ul class="feature-list">
+          <li>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+            <h3>Identity &amp; access</h3>
+            <p>Sign-on through your identity provider. Role-based access mirrors your existing entitlements and information barriers.</p>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M12 4v16"/></svg></span>
+            <h3>Least-privilege connectors</h3>
+            <p>Connectors are read-only by default, and write access is granted per workflow with an approval step. Credentials stay in your secrets manager.</p>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>
+            <h3>Complete audit logs</h3>
+            <p>Every prompt, file access, tool call and output is logged to your SIEM and kept for your required retention period.</p>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6l-8-3Z"/></svg></span>
+            <h3>Training on your data</h3>
+            <p>We configure deployments under commercial API terms. Under Anthropic's commercial terms, customer inputs and outputs aren't used to train models by default. We walk your team through the terms for the route you choose.</p>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <h3>Humans decide</h3>
+            <p>Every workflow ends with a named person approving the output. Nothing reaches an LP, a regulator or a counterparty without review.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cta reveal">
+        <div>
+          <span class="eyebrow">For your CISO and DPO</span>
+          <h2>Request our security pack.</h2>
+          <p>It covers architecture diagrams, a data-flow template, a control matrix and a draft DPIA outline, written for review by UAE compliance teams.</p>
+        </div>
+        <div style="align-self:center">
+          <a class="btn btn-primary" style="background:#f3f7f6;color:#0b2229" href="mailto:hello@nokhada.ae?subject=Security%20pack%20request">Request the pack <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html"><img src="assets/img/logo-mark.svg" width="30" height="30" alt=""><span class="brand-word">Nokhada</span></a>
+        <p class="small muted" style="margin-top:14px;max-width:34ch">Claude Code deployments for investment firms in the United Arab Emirates.</p>
+      </div>
+      <div>
+        <h4>Who we serve</h4>
+        <ul>
+          <li><a href="private-capital.html">Private Capital</a></li>
+          <li><a href="public-markets.html">Public Markets</a></li>
+          <li><a href="family-offices.html">Family Offices &amp; Sovereign</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="security.html">Security &amp; data residency</a></li>
+          <li><a href="insights/index.html">Insights</a></li>
+          <li><a href="ar/index.html" lang="ar">العربية</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@nokhada.ae">hello@nokhada.ae</a></li>
+          <li>Dubai · Abu Dhabi</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>© <span data-year>2026</span> Nokhada. Nokhada is an independent firm and is not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic, PBC. Nothing on this site is investment advice or a financial promotion.</p>
+      <p><a href="security.html">Data protection</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
