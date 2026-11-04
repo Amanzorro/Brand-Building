@@ -35,28 +35,28 @@
 
   /* ---------------- Questions ---------------- */
   var Q = [
-    { id: "where", type: "map", short: "Where", title: "Where are you established?", hint: "Tap the emirates you operate in, and any financial free zones. Select as many as apply." },
-    { id: "sector", type: "single", short: "Sector", title: "What's your main sector?", hint: "Pick the closest one.", opts: [
-      ["industry", "Industry & manufacturing", "Plants, processing, materials", "factory"],
-      ["energy", "Energy & utilities", "Power, water, oil & gas services", "bolt"],
-      ["logistics", "Logistics & transport", "Fleets, warehouses, ports", "truck"],
-      ["realestate", "Real estate & construction", "Developers, owners, contractors", "tower"],
-      ["finance", "Banking, insurance & investment", "Lenders, insurers, asset managers", "bank"],
-      ["gov", "Government & GRE", "Authorities and government-related entities", "gov"],
-      ["services", "Services & other", "Offices, retail, hospitality", "case"] ] },
-    { id: "size", type: "slider", short: "Size", title: "Roughly how much do you emit each year?", hint: "Scope 1 and 2 combined. Drag the pearl to a rough guess, or say you don't know yet." },
-    { id: "cbam", type: "multi", short: "EU exports", title: "Do you export any of these to the EU?", hint: "These goods fall under the EU's carbon border mechanism (CBAM).", opts: [
+    { id: "where", type: "map", short: "Where", title: "Where are you established?", hint: "Select all that apply." },
+    { id: "sector", type: "single", short: "Sector", title: "What's your main sector?", hint: "", opts: [
+      ["industry", "Industry & manufacturing", "", "factory"],
+      ["energy", "Energy & utilities", "", "bolt"],
+      ["logistics", "Logistics & transport", "", "truck"],
+      ["realestate", "Real estate & construction", "", "tower"],
+      ["finance", "Banking, insurance & investment", "", "bank"],
+      ["gov", "Government & GRE", "", "gov"],
+      ["services", "Services & other", "", "case"] ] },
+    { id: "size", type: "slider", short: "Size", title: "Roughly how much do you emit each year?", hint: "Scope 1 and 2. A guess is fine." },
+    { id: "cbam", type: "multi", short: "EU exports", title: "Do you export any of these to the EU?", hint: "Goods covered by the EU CBAM.", opts: [
       ["alu", "Aluminium", "", "ingot"], ["steel", "Iron & steel", "", "beam"], ["cement", "Cement", "", "bag"],
       ["fert", "Fertilisers", "", "grains"], ["h2", "Hydrogen", "", "h2"], ["elec", "Electricity", "", "bolt"],
       ["none", "None of these", "", "none"], ["unsure", "Not sure", "", "q"] ] },
-    { id: "licensed", type: "single", big: true, short: "Licence", title: "Are you licensed by a UAE financial regulator?", hint: "The Central Bank (CBUAE), Capital Market Authority (CMA), DFSA or FSRA.", opts: [
-      ["yes", "Yes", "We hold a financial licence", "shield"], ["no", "No", "We're not a regulated financial firm", "xmark"] ] },
-    { id: "asks", type: "single", big: true, short: "Requests", title: "Do customers, lenders or investors ask for your emissions data?", hint: "Questionnaires, supplier portals, loan conditions or investor requests.", opts: [
-      ["yes", "Yes, already", "We've had requests", "inbox"], ["no", "Not yet", "Nobody has asked so far", "calm"] ] },
-    { id: "assets", type: "single", short: "Assets", title: "Do you own or finance buildings or infrastructure?", hint: "Offices, warehouses, plants, towers, or loans and investments secured on them.", opts: [
+    { id: "licensed", type: "single", big: true, short: "Licence", title: "Are you licensed by a UAE financial regulator?", hint: "CBUAE, CMA, DFSA or FSRA.", opts: [
+      ["yes", "Yes", "", "shield"], ["no", "No", "", "xmark"] ] },
+    { id: "asks", type: "single", big: true, short: "Requests", title: "Do customers or lenders ask for your emissions data?", hint: "", opts: [
+      ["yes", "Yes", "", "inbox"], ["no", "Not yet", "", "calm"] ] },
+    { id: "assets", type: "single", short: "Assets", title: "Do you own or finance buildings or infrastructure?", hint: "", opts: [
       ["own", "We own or operate them", "", "key"], ["finance", "We lend to or invest in them", "", "coins"],
       ["both", "Both", "", "both"], ["no", "Neither", "", "none"] ] },
-    { id: "data", type: "ladder", short: "Data", title: "Where is your emissions data today?", hint: "Be honest. It changes what the first two weeks look like, not whether we can help.", opts: [
+    { id: "data", type: "ladder", short: "Data", title: "Where is your emissions data today?", hint: "", opts: [
       ["none", "Nothing collected yet", 18], ["sheets", "Spreadsheets", 40], ["software", "Carbon software", 62], ["verified", "A verified inventory", 86] ] }
   ];
 
@@ -65,6 +65,11 @@
   var cur = 0, finished = false;
 
   /* ---------------- Rules ---------------- */
+  /* Official sources, one per rule. Same links as climate-rules.html.
+     null = not yet confirmed: shown as "[source to confirm]" until someone has opened
+     the official page and checked it. "asks" is commercial, so it has no legal source. */
+  var SOURCES = { law: null, nrcc: null, ad: null, cbam: null, fin: null, phys: null, build: null };
+
   var STATUS_LABEL = { applies: "Applies", likely: "Likely", check: "Check", none: "Not indicated" };
   var CBAM_GOODS = { alu: "aluminium", steel: "iron and steel", cement: "cement", fert: "fertilisers", h2: "hydrogen", elec: "electricity" };
 
@@ -76,48 +81,48 @@
     var obs = [];
 
     obs.push({ id: "law", short: "Climate Law", status: "applies", title: "UAE Climate Law: measure, report and reduce",
-      body: "You need to measure and report your greenhouse-gas emissions, keep the records and take reduction measures. Detailed requirements are set by the Ministry of Climate Change and Environment and local authorities.",
-      why: "Applies to public and private entities, onshore and in free zones.",
+      body: "Report emissions, keep records and reduce them.",
+      why: "Applies to all entities, including free zones.",
       data: ["Electricity, water and district-cooling bills for every site", "Fuel records for vehicles, generators and equipment", "Refrigerant purchase and top-up logs", "A list of every site and entity, with who controls each"],
       src: "Federal Decree-Law No. 11 of 2024 · in force 30 May 2025" });
 
     var n = { id: "nrcc", short: "NRCC", title: "National Register for Carbon Credits (NRCC)", src: "Cabinet Resolution No. 67 of 2024 · run by MOCCAE", data: ["Annual emissions estimate by scope", "Evidence index for a verifier"] };
-    if (a.size === "gte500") { n.status = "applies"; n.body = "At your scale, registration on the NRCC and verified reporting are expected. Your inventory will need to stand up to an approved verifier."; n.why = "You estimate 500,000 tCO₂e or more a year, the level reported for mandatory registration."; }
-    else if (!a.size || a.size === "unknown") { n.status = "likely"; n.body = "Whether registration is mandatory for you depends on your annual emissions. The first step is a screening estimate from your bills and fuel records."; n.why = a.size === "unknown" ? "You don't know your emissions yet." : "Your emissions size isn't answered yet."; n.data = ["Twelve months of energy and fuel records for a screening estimate"]; }
-    else { n.status = "check"; n.body = "Below the large-emitter level, registration may be voluntary or phased. Confirm the current thresholds and timing for your category with MOCCAE."; n.why = "Your estimated emissions are below 500,000 tCO₂e a year."; }
+    if (a.size === "gte500") { n.status = "applies"; n.body = "Registration and verified reporting expected."; n.why = "You estimate 500,000 tCO₂e or more a year."; }
+    else if (!a.size || a.size === "unknown") { n.status = "likely"; n.body = "Depends on your annual emissions. Start with an estimate."; n.why = a.size === "unknown" ? "You don't know your emissions yet." : "Your emissions size isn't answered yet."; n.data = ["Twelve months of energy and fuel records for a screening estimate"]; }
+    else { n.status = "check"; n.body = "Registration may be voluntary at your size. Confirm with MOCCAE."; n.why = "You estimate under 500,000 tCO₂e a year."; }
     obs.push(n);
 
-    obs.push(inAbuDhabi ? { id: "ad", short: "Abu Dhabi", status: "check", title: "Abu Dhabi emissions reporting system", body: "Abu Dhabi has issued its own reporting system under the federal law, with its own thresholds. Check which of your Abu Dhabi entities fall within it.", why: "You operate in Abu Dhabi or ADGM.", data: ["Site-level data for Abu Dhabi operations, kept separately"], src: "Abu Dhabi emirate-level requirements" }
+    obs.push(inAbuDhabi ? { id: "ad", short: "Abu Dhabi", status: "check", title: "Abu Dhabi emissions reporting system", body: "Abu Dhabi has its own reporting system and thresholds.", why: "You operate in Abu Dhabi or ADGM.", data: ["Site-level data for Abu Dhabi operations, kept separately"], src: "Abu Dhabi emirate-level requirements" }
       : { id: "ad", short: "Abu Dhabi", status: "none", title: "Abu Dhabi emissions reporting system", why: "You haven't selected Abu Dhabi or ADGM." });
 
     var goods = a.cbam.filter(function (g) { return CBAM_GOODS[g]; }).map(function (g) { return CBAM_GOODS[g]; });
-    if (goods.length) obs.push({ id: "cbam", short: "CBAM", status: "applies", title: "EU CBAM: embedded emissions for your exports", body: "Since 1 January 2026, EU importers of " + goods.join(", ") + " pay for the emissions embedded in those goods. They will ask you for installation-level data, and good data can lower their cost compared with EU default values.", why: "You export CBAM-covered goods to the EU.", data: ["Production volumes by installation and product", "Direct fuel and process emissions by installation", "Electricity consumption and source for each installation", "Precursor materials and their suppliers"], src: "EU CBAM · definitive period from 1 January 2026" });
-    else if (has(a.cbam, "unsure")) obs.push({ id: "cbam", short: "CBAM", status: "check", title: "EU CBAM: embedded emissions for your exports", body: "If any of your EU exports are aluminium, iron and steel, cement, fertilisers, hydrogen or electricity, your EU customers will need emissions data from you. Check your product list against the covered goods.", why: "You're not sure whether your exports are covered.", data: ["A list of EU-bound products with their customs codes"], src: "EU CBAM · definitive period from 1 January 2026" });
+    if (goods.length) obs.push({ id: "cbam", short: "CBAM", status: "applies", title: "EU CBAM: embedded emissions for your exports", body: "EU importers of " + goods.join(", ") + " now pay for embedded emissions and will ask you for data.", why: "You export CBAM-covered goods to the EU.", data: ["Production volumes by installation and product", "Direct fuel and process emissions by installation", "Electricity consumption and source for each installation", "Precursor materials and their suppliers"], src: "EU CBAM · definitive period from 1 January 2026" });
+    else if (has(a.cbam, "unsure")) obs.push({ id: "cbam", short: "CBAM", status: "check", title: "EU CBAM: embedded emissions for your exports", body: "Check your products against the covered goods.", why: "You're not sure.", data: ["A list of EU-bound products with their customs codes"], src: "EU CBAM · definitive period from 1 January 2026" });
     else obs.push({ id: "cbam", short: "CBAM", status: "none", title: "EU CBAM: embedded emissions for your exports", why: a.cbam.length ? "You don't export CBAM-covered goods to the EU." : "Not answered yet." });
 
-    if (isFinance) obs.push({ id: "fin", short: "Finance rules", status: a.licensed === "yes" ? "applies" : "likely", title: "Financial-sector climate principles", body: "UAE financial regulators expect board oversight of climate risk, physical and transition risk built into risk management, sustainability disclosures and a transition plan.", why: a.licensed === "yes" ? "You're licensed by the CBUAE, CMA, DFSA or FSRA." : "You work in financial services. Check whether your licence brings you in scope.", data: ["Loan and investment book with sector codes", "Collateral and asset locations", "Counterparty emissions and transition plans where disclosed", "Current risk appetite and governance documents"], src: "UAE Sustainable Finance Working Group principles: Nov 2023, Jun 2024, Feb 2026" });
+    if (isFinance) obs.push({ id: "fin", short: "Finance rules", status: a.licensed === "yes" ? "applies" : "likely", title: "Financial-sector climate principles", body: "Board oversight, risk management, disclosure and a transition plan.", why: a.licensed === "yes" ? "You're licensed by the CBUAE, CMA, DFSA or FSRA." : "You work in financial services. Check whether your licence brings you in scope.", data: ["Loan and investment book with sector codes", "Collateral and asset locations", "Counterparty emissions and transition plans where disclosed", "Current risk appetite and governance documents"], src: "UAE Sustainable Finance Working Group principles: Nov 2023, Jun 2024, Feb 2026" });
     else obs.push({ id: "fin", short: "Finance rules", status: "none", title: "Financial-sector climate principles", why: "You're not a regulated financial firm." });
 
-    obs.push(a.asks === "yes" ? { id: "asks", short: "Customers", status: "applies", title: "Customer, lender and investor requests", body: "This isn't a legal duty, but the commercial pressure is real. Answers to questionnaires should come from the same inventory you report to regulators, so the numbers always match.", why: "You're already receiving requests for emissions data.", data: ["Copies of recent questionnaires and the answers you gave", "Scope 3 data from your main suppliers"], src: "Commercial requirement" }
-      : { id: "asks", short: "Customers", status: "none", title: "Customer, lender and investor requests", why: a.asks === "no" ? "No requests yet. Most firms get them within a year of supplying multinationals." : "Not answered yet." });
+    obs.push(a.asks === "yes" ? { id: "asks", short: "Customers", status: "applies", title: "Customer, lender and investor requests", body: "Not a legal duty. Use the figures you report.", why: "You already get requests.", data: ["Copies of recent questionnaires and the answers you gave", "Scope 3 data from your main suppliers"], src: "Commercial requirement" }
+      : { id: "asks", short: "Customers", status: "none", title: "Customer, lender and investor requests", why: a.asks === "no" ? "No requests yet." : "Not answered yet." });
 
     var fin = a.assets === "finance" || a.assets === "both", own = a.assets === "own" || a.assets === "both";
-    if (a.licensed === "yes" && fin) obs.push({ id: "phys", short: "Physical risk", status: "applies", title: "Physical climate risk on assets", body: "The climate-risk principles expect you to assess physical risk such as extreme heat, flooding and sea-level rise across the assets you finance, and report concentrations to the board.", why: "You're regulated and you finance real assets.", data: ["Addresses or coordinates for collateral and investee assets", "Asset type, age and value"], src: "Climate-related financial risk principles · Nov 2023" });
-    else if (own || fin) obs.push({ id: "phys", short: "Physical risk", status: "likely", title: "Physical climate risk on assets", body: "Lenders, insurers and buyers increasingly ask about heat, flood and water exposure. There's no standalone legal duty, but an evidence-backed asset register answers those questions quickly.", why: "You own, operate or finance buildings or infrastructure.", data: ["Asset register with locations", "Cooling, energy and water data per asset", "Drainage and flood history where known"], src: "Lender and insurer requirements" });
+    if (a.licensed === "yes" && fin) obs.push({ id: "phys", short: "Physical risk", status: "applies", title: "Physical climate risk on assets", body: "Assess and report physical risk on financed assets.", why: "You're regulated and you finance real assets.", data: ["Addresses or coordinates for collateral and investee assets", "Asset type, age and value"], src: "Climate-related financial risk principles · Nov 2023" });
+    else if (own || fin) obs.push({ id: "phys", short: "Physical risk", status: "likely", title: "Physical climate risk on assets", body: "No legal duty, but lenders and insurers ask.", why: "You own or finance real assets.", data: ["Asset register with locations", "Cooling, energy and water data per asset", "Drainage and flood history where known"], src: "Lender and insurer requirements" });
     else obs.push({ id: "phys", short: "Physical risk", status: "none", title: "Physical climate risk on assets", why: a.assets ? "You don't own or finance real assets." : "Not answered yet." });
 
     if (a.sector === "realestate" || own) {
       var s = []; if (inAbuDhabi) s.push("Estidama (Abu Dhabi)"); if (inDubai) s.push("Al Sa'fat (Dubai)");
-      obs.push({ id: "build", short: "Buildings", status: "check", title: "Green-building regulations and ratings", body: "New buildings and major refurbishments may need to meet local green-building regulations" + (s.length ? ", such as " + s.join(" and ") : "") + ". Check which apply to your projects.", why: "You develop, own or operate buildings.", data: ["Design and as-built documentation", "Energy and water modelling or metering"], src: "Emirate-level building regulations" });
+      obs.push({ id: "build", short: "Buildings", status: "check", title: "Green-building regulations and ratings", body: "New buildings may need to meet local green-building rules" + (s.length ? " such as " + s.join(" and ") : "") + ".", why: "You develop, own or operate buildings.", data: ["Design and as-built documentation", "Energy and water modelling or metering"], src: "Emirate-level building regulations" });
     } else obs.push({ id: "build", short: "Buildings", status: "none", title: "Green-building regulations and ratings", why: "You don't develop or operate buildings." });
     return obs;
   }
 
   var READINESS = {
-    none: { level: 1, text: "There are no records in one place yet. Expect the diagnostic to focus on which records exist, who holds them and a simple evidence request for site managers." },
-    sheets: { level: 2, text: "You have a base to work from. Expect us to turn your spreadsheets into a traced, rerunnable inventory and close the gaps the Sieve finds." },
-    software: { level: 3, text: "Expect us to check your current outputs with the Sieve, move your methodology into files you own, and connect your tool rather than replace it where it works." },
-    verified: { level: 4, text: "Expect the focus to be speed and coverage: shorter cycles, faster verifier answers, and new obligations such as CBAM or physical risk." }
+    none: { level: 1, text: "Find which records exist and who holds them." },
+    sheets: { level: 2, text: "Turn spreadsheets into a rerunnable inventory." },
+    software: { level: 3, text: "We check your outputs and document your method." },
+    verified: { level: 4, text: "Focus on faster cycles and new obligations." }
   };
   function plan(a, obs) {
     var on = function (id) { var o = obs.filter(function (x) { return x.id === id; })[0]; return o && o.status !== "none"; };
@@ -132,6 +137,11 @@
   }
 
   /* ---------------- Helpers ---------------- */
+  function sourceHtml(id) {
+    if (!(id in SOURCES)) return "";
+    var url = SOURCES[id];
+    return url ? "<span class=\"src\">Source: <a href=\"" + esc(url) + "\">official text</a></span>" : "<span class=\"src\">Source: <span class=\"tbc\">[source to confirm]</span></span>";
+  }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
   function answered(i) {
     var q = Q[i], v = A[q.id];
@@ -220,7 +230,7 @@
       "<input type=\"range\" id=\"t-range\" min=\"0\" max=\"100\" step=\"0.5\" value=\"" + tToV(t).toFixed(1) + "\" aria-label=\"Annual emissions, tonnes CO2e\" aria-valuetext=\"about " + nice(t).toLocaleString("en-US") + " tonnes\"></div>" +
       "<div class=\"ticks\" style=\"position:relative;height:14px\">" + [[1e3, "1k"], [1e4, "10k"], [1e5, "100k"], [1e6, "1M"], [5e6, "5M"]].map(function (k) {
         return "<span style=\"position:absolute;left:" + tToV(k[0]).toFixed(1) + "%;transform:translateX(-50%)\">" + k[1] + "</span>"; }).join("") + "</div></div>" +
-      "<div class=\"tiles\" style=\"margin-top:22px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))\"><button type=\"button\" class=\"tile\" data-unknown aria-pressed=\"" + unknown + "\" style=\"min-height:0\">" + ICON.q + "<span class=\"tl\">Don't know yet</span><span class=\"ts\">We'll start with a screening estimate</span></button></div>";
+      "<div class=\"tiles\" style=\"margin-top:22px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))\"><button type=\"button\" class=\"tile\" data-unknown aria-pressed=\"" + unknown + "\" style=\"min-height:0\">" + ICON.q + "<span class=\"tl\">Don't know yet</span></button></div>";
   }
 
   /* ---------------- Card rendering ---------------- */
@@ -270,10 +280,10 @@
     obs.forEach(function (o) { c[o.status]++; });
     card.innerHTML = "<div class=\"q-enter\" style=\"display:flex;flex-direction:column;flex:1;justify-content:center\"><span class=\"qnum\">Your map is ready</span>" +
       "<h2>" + (c.applies + c.likely) + " obligations apply or are likely, and " + c.check + " need checking.</h2>" +
-      "<p class=\"hint\">Select any point on the map to read about it, or scroll down for the details, the data you'll need and what your diagnostic would cover.</p>" +
+      "<p class=\"hint\">Details are below.</p>" +
       "<div style=\"display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px\">" + ["applies", "likely", "check", "none"].map(function (s) { return "<span class=\"pill " + s + "\">" + c[s] + " " + STATUS_LABEL[s] + "</span>"; }).join("") + "</div>" +
       "<div style=\"display:flex;gap:10px;flex-wrap:wrap\"><a class=\"btn btn-nacre\" href=\"#results\">See the details <span class=\"arrow\" aria-hidden=\"true\">↓</span></a>" +
-      "<button type=\"button\" class=\"btn btn-outline-light\" data-edit>Edit answers</button><a class=\"btn btn-outline-light\" href=\"sieve-demo.html\">Then watch the Sieve demo</a></div></div>";
+      "<button type=\"button\" class=\"btn btn-outline-light\" data-edit>Edit answers</button></div></div>";
   }
 
   /* ---------------- Compass ---------------- */
@@ -323,7 +333,7 @@
     var sorted = obs.slice().sort(function (x, y) { return order[x.status] - order[y.status]; });
     document.getElementById("ob-list").innerHTML = sorted.map(function (o) {
       return "<article class=\"ob " + o.status + "\" id=\"ob-" + o.id + "\"><div class=\"ob-top\"><h3>" + esc(o.title) + "</h3><span class=\"pill " + o.status + "\">" + STATUS_LABEL[o.status] + "</span></div><p class=\"why\">" + esc(o.why) + "</p>" +
-        (o.status !== "none" ? "<p>" + esc(o.body) + "</p><span class=\"src\">" + esc(o.src) + "</span>" : "") + "</article>";
+        (o.status !== "none" ? "<p>" + esc(o.body) + "</p><span class=\"src\">" + esc(o.src) + "</span>" + sourceHtml(o.id) : "") + "</article>";
     }).join("");
     var data = [];
     obs.forEach(function (o) { if (o.status !== "none") (o.data || []).forEach(function (x) { if (data.indexOf(x) === -1) data.push(x); }); });
@@ -332,9 +342,9 @@
     side += "<div class=\"panel-card\"><h3>Where you're starting from</h3>" + (r
       ? "<div class=\"meter\">" + [1, 2, 3, 4].map(function (i) { return "<i class=\"" + (i <= r.level ? "on" : "") + "\"></i>"; }).join("") + "</div><div class=\"meter-labels\"><span>None</span><span>Sheets</span><span>Software</span><span>Verified</span></div><p class=\"small\" style=\"margin:0;color:var(--ink-2)\">" + esc(r.text) + "</p>"
       : "<p class=\"small muted\" style=\"margin:0\">Answer question 8 to see this.</p>") + "</div>";
-    side += "<div class=\"panel-card\"><h3>What your diagnostic would cover</h3><div class=\"plan\"><div><h4>Week 1</h4><ul>" + p.w1.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div><div><h4>Week 2</h4><ul>" + p.w2.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div></div></div>";
+    side += "<div class=\"panel-card\"><h3>Your first two weeks</h3><div class=\"plan\"><div><h4>Week 1</h4><ul>" + p.w1.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div><div><h4>Week 2</h4><ul>" + p.w2.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div></div></div>";
     side += "<div class=\"panel-card\"><h3>Data you'll need</h3><ul class=\"checklist\">" + data.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>";
-    side += "<div class=\"panel-card\"><div style=\"display:flex;gap:10px;flex-wrap:wrap\"><button type=\"button\" class=\"btn btn-primary\" id=\"copy-summary\">Copy this summary</button><a class=\"btn btn-ghost\" href=\"../index.html#contact\">Book the diagnostic</a></div><pre id=\"summary-text\" class=\"codeblock\" style=\"white-space:pre-wrap\" hidden></pre><p class=\"disclaimer\">This is a general orientation, not legal or regulatory advice. Rules, thresholds and deadlines change, so confirm with MOCCAE, your local authority, your regulator and your advisers. Your answers stay in this browser.</p></div>";
+    side += "<div class=\"panel-card\"><div style=\"display:flex;gap:10px;flex-wrap:wrap\"><button type=\"button\" class=\"btn btn-primary\" id=\"copy-summary\">Copy this summary</button><a class=\"btn btn-ghost\" href=\"../index.html#contact\">Book the diagnostic</a></div><pre id=\"summary-text\" class=\"codeblock\" style=\"white-space:pre-wrap\" hidden></pre><p class=\"disclaimer\">General information, not legal advice. Confirm with the authority.</p></div>";
     document.getElementById("side-stack").innerHTML = side;
     lastSummary = "Nokhada Climate Obligations Checker — summary\n\n" + sorted.map(function (o) { return "[" + STATUS_LABEL[o.status] + "] " + o.title + "\n  " + o.why; }).join("\n") +
       "\n\nData needed:\n" + data.map(function (x) { return "- " + x; }).join("\n") +

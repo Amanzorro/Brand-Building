@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Security &amp; Data Residency — Nokhada</title>
-  <meta name="description" content="How Nokhada deploys Claude Code inside UAE organisations: your infrastructure, documented data flows and UAE data-protection compliance.">
+  <title>Security — Nokhada</title>
+  <meta name="description" content="Where Nokhada deployments run, what we store, and the UAE data-protection rules we design around.">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,14 +22,11 @@
     </a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="nav" id="site-nav" aria-label="Primary">
-      <a href="industry.html">Industry</a>
-      <a href="finance.html">Finance</a>
-      <a href="real-estate.html">Real Estate</a>
-      <a href="climate-rules.html">Climate Rules</a>
-      <a href="insights/index.html">Insights</a>
+      <a href="services.html">Services</a>
+      <a href="climate-rules.html">Climate rules</a>
       <a href="try/index.html">Try it</a>
       <a class="lang" href="ar/index.html" lang="ar" hreflang="ar">العربية</a>
-      <a class="btn btn-primary" href="index.html#contact">Book a diagnostic</a>
+      <a class="btn btn-primary" href="index.html#contact">Book a call</a>
     </nav>
   </div>
 </header>
@@ -37,117 +34,35 @@
 <main id="main">
   <section class="page-hero">
     <div class="wrap">
-      <span class="eyebrow">Security · Data residency · Regulation</span>
-      <h1>Built to pass your compliance review, not to work around it.</h1>
-      <p class="lede">Energy, production, supplier and customer data is commercially sensitive. Nokhada deploys into your environment, documents every data flow and leaves you with a system you can explain to your DPO, your auditor and your regulator.</p>
+      <h1>Security and data protection</h1>
+      <p class="lede">Your documents, code and logs stay in your systems.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">Deployment models</span>
-        <h2>Your infrastructure, your choice.</h2>
-      </div>
-      <div class="grid grid-3 reveal">
-        <article class="card">
-          <span class="tag">Most common</span>
-          <h3>Your cloud tenancy</h3>
-          <p>Runs inside your own AWS, Azure or Google Cloud account, using in-country UAE regions wherever your workloads need them. We never hold your data.</p>
-        </article>
-        <article class="card">
-          <span class="tag">Highest control</span>
-          <h3>On-premise / private cloud</h3>
-          <p>Tooling, connectors and reference files run on your own hardware or private cloud, with model calls going out through your approved gateway.</p>
-        </article>
-        <article class="card">
-          <span class="tag">Mixed</span>
-          <h3>Hybrid</h3>
-          <p>Sensitive systems stay on-premise and less sensitive workflows run in the cloud. Data classification decides which is which.</p>
-        </article>
-      </div>
-      <div class="card reveal" style="margin-top:20px">
-        <span class="tag">Where inference runs</span>
-        <h3>We tell you exactly where the model runs.</h3>
-        <p>Claude models are available through Anthropic's API and through major cloud platforms such as Amazon Bedrock and Google Cloud Vertex AI. Which models are offered in which regions varies and changes over time. During the diagnostic we confirm the options for your required jurisdiction, document where prompts and outputs are processed, and agree the route with your compliance team before anything goes live. If a workflow can't meet your residency requirement, we say so and don't build it.</p>
-      </div>
-    </div>
-  </section>
+      <h2>Where it runs</h2>
+      <p>We deploy in your own cloud account (AWS, Azure or Google Cloud, in a UAE region if you need one) or on your own servers. We store nothing by default.</p>
+      <p>Claude models are available through Anthropic's API and through cloud platforms such as Amazon Bedrock and Google Cloud Vertex AI. Regional availability varies, so before go-live we agree with your compliance team where prompts and outputs are processed.</p>
 
-  <section class="section-alt">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">Data protection</span>
-        <h2>Data-protection rules we design around.</h2>
-        <p>Which regimes apply depends on where you're established and whose data you process. We work alongside your counsel, giving them the documentation they need to reach a view. The climate rules themselves are covered on the <a href="climate-rules.html">UAE climate rules</a> page.</p>
-      </div>
-      <div class="table-wrap reveal">
-        <table class="compare">
-          <thead>
-            <tr><th scope="col">Regime</th><th scope="col">Applies to</th><th scope="col">What we provide</th></tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">UAE Federal PDPL<br><span class="small muted">Federal Decree-Law No. 45 of 2021</span></th><td>Onshore processing of personal data</td><td class="us">Data-flow maps, processing records and input to your DPIA</td></tr>
-            <tr><th scope="row">DIFC Data Protection Law<br><span class="small muted">DIFC Law No. 5 of 2020 and Regulations</span></th><td>DIFC-registered entities</td><td class="us">Documentation for transfer assessments and for the DIFC's requirements on processing through autonomous and semi-autonomous systems</td></tr>
-            <tr><th scope="row">ADGM Data Protection Regulations 2021</th><td>ADGM-registered entities</td><td class="us">Processing records, transfer analysis and processor terms</td></tr>
-            <tr><th scope="row">Financial regulators<br><span class="small muted">CBUAE, CMA, DFSA, FSRA</span></th><td>Banks, insurers and investment firms</td><td class="us">Outsourcing and technology-risk documentation, audit logs and model-governance evidence</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="small muted reveal" style="margin-top:16px">Nokhada is not a law firm and does not give legal advice. Your counsel and compliance function decide whether a deployment meets your obligations.</p>
-    </div>
-  </section>
+      <h2>Data-protection rules</h2>
+      <ul class="plain">
+        <li>UAE Federal Personal Data Protection Law (Federal Decree-Law No. 45 of 2021)</li>
+        <li>DIFC Data Protection Law (DIFC Law No. 5 of 2020)</li>
+        <li>ADGM Data Protection Regulations 2021</li>
+        <li>Outsourcing and technology-risk rules of the CBUAE, CMA, DFSA and FSRA, where they apply</li>
+      </ul>
+      <p class="small muted">We are not a law firm. Your counsel decides whether a deployment meets your obligations.</p>
 
-  <section>
-    <div class="wrap split">
-      <div class="reveal">
-        <span class="eyebrow">Controls</span>
-        <h2>Standard in every deployment.</h2>
-      </div>
-      <div class="reveal">
-        <ul class="feature-list">
-          <li>
-            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
-            <h3>Identity &amp; access</h3>
-            <p>Sign-on through your identity provider. Role-based access mirrors your existing entitlements.</p>
-          </li>
-          <li>
-            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M12 4v16"/></svg></span>
-            <h3>Least-privilege connectors</h3>
-            <p>Connectors are read-only by default, and write access is granted per workflow with an approval step. Credentials stay in your secrets manager.</p>
-          </li>
-          <li>
-            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>
-            <h3>Complete audit logs</h3>
-            <p>Every prompt, file access, tool call and output is logged to your SIEM and kept for your required retention period.</p>
-          </li>
-          <li>
-            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6l-8-3Z"/></svg></span>
-            <h3>Training on your data</h3>
-            <p>We configure deployments under commercial API terms. Under Anthropic's commercial terms, customer inputs and outputs aren't used to train models by default. We walk your team through the terms for the route you choose.</p>
-          </li>
-          <li>
-            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg></span>
-            <h3>Humans decide</h3>
-            <p>Every workflow ends with a named person approving the output. Nothing reaches a regulator, a verifier or a customer without review.</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="wrap">
-      <div class="cta reveal">
-        <div>
-          <span class="eyebrow">For your CISO and DPO</span>
-          <h2>Request our security pack.</h2>
-          <p>Write to hello@nokhada.ae or use the contact form. It covers architecture diagrams, a data-flow template, a control matrix and a draft DPIA outline, written for review by UAE information-security and compliance teams.</p>
-        </div>
-        <div style="align-self:center">
-          <a class="btn btn-nacre" href="index.html#contact">Request the pack <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
+      <h2>Controls</h2>
+      <ul class="plain">
+        <li>Sign-in through your identity provider</li>
+        <li>Access that matches your existing permissions</li>
+        <li>Connectors read-only by default</li>
+        <li>Every prompt, file access and output logged to your systems</li>
+        <li>A named person approves every output before it leaves your organisation</li>
+      </ul>
+      <p>Questions from your security team: <span class="addr">hello@nokhada.ae</span></p>
     </div>
   </section>
 
@@ -158,22 +73,15 @@
     <div class="footer-grid">
       <div>
         <a class="brand" href="index.html"><img src="assets/img/logo-mark.svg" width="30" height="30" alt=""><span class="brand-word">Nokhada</span></a>
-        <p class="small muted" style="margin-top:14px;max-width:34ch">Claude Code deployments for climate reporting and climate risk in the United Arab Emirates.</p>
+        <p class="small muted" style="margin-top:14px;max-width:34ch">Climate reporting and climate risk for UAE organisations. A nokhada was the captain of a pearling dhow.</p>
       </div>
       <div>
-        <h4>Who we serve</h4>
+        <h4>Site</h4>
         <ul>
-          <li><a href="industry.html">Industry &amp; exporters</a></li>
-          <li><a href="finance.html">Banks &amp; investors</a></li>
-          <li><a href="real-estate.html">Real estate &amp; infrastructure</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="climate-rules.html">UAE climate rules</a></li>
-          <li><a href="security.html">Security &amp; data residency</a></li>
-          <li><a href="insights/index.html">Insights</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="climate-rules.html">Climate rules</a></li>
+          <li><a href="try/index.html">Try it</a></li>
+          <li><a href="security.html">Security</a></li>
           <li><a href="ar/index.html" lang="ar">العربية</a></li>
         </ul>
       </div>
@@ -186,8 +94,7 @@
       </div>
     </div>
     <div class="footer-legal">
-      <p>© <span data-year>2026</span> Nokhada. Nokhada is an independent firm and is not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic, PBC. Nothing on this site is legal, regulatory or investment advice.</p>
-      <p><a href="security.html">Data protection</a></p>
+      <p>© <span data-year>2026</span> Nokhada. Independent firm, not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic, PBC. Nothing on this site is legal, regulatory or investment advice.</p>
     </div>
   </div>
 </footer>
