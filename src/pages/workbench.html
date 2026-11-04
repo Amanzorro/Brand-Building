@@ -1,0 +1,71 @@
+  <link rel="stylesheet" href="{P}assets/css/tools.css">
+  <link rel="stylesheet" href="{P}assets/css/workbench.css">
+  <section class="page-hero wb-hero">
+    <div class="wrap">
+      <h1>Workbench</h1>
+      <p class="lede">Turn electricity bills, district-cooling invoices, fuel records and refrigerant logs into a Scope 1 and 2 inventory. Every figure links to the row and document it came from.</p>
+      <p class="small muted">Demo edition: formulas and fixed checks, with no AI. It runs in your browser and sends nothing anywhere.</p>
+    </div>
+  </section>
+
+  <section class="wb" id="workbench">
+    <div class="wrap">
+      <noscript><p>The Workbench needs JavaScript turned on.</p></noscript>
+      <nav class="wb-steps" aria-label="Workbench steps">
+        <ol>
+          <li><button type="button" data-step="1" aria-current="step">1. Choose data</button></li>
+          <li><button type="button" data-step="2" disabled>2. Review</button></li>
+          <li><button type="button" data-step="3" disabled>3. Factors</button></li>
+          <li><button type="button" data-step="4" disabled>4. Results</button></li>
+        </ol>
+      </nav>
+      <div id="wb-status" class="wb-status" role="status" aria-live="polite"></div>
+
+      <div class="wb-panel" data-panel="1">
+        <h2>Choose data</h2>
+        <div class="wb-choices">
+          <div>
+            <h3>Demo pack</h3>
+            <p>Ras Saffa Logistics is a fictional company with 44 documents for 2025, 18 of them in Arabic. A few problems are planted in it for the checks to find.</p>
+            <p><button type="button" class="btn btn-nacre" data-action="load-demo">Load the demo pack</button></p>
+          </div>
+          <div>
+            <h3>Your own data</h3>
+            <p>Upload a CSV in the template's format, or type rows into an empty table. The file is read inside this tab and never leaves your device.</p>
+            <p class="wb-buttons">
+              <label class="btn btn-primary wb-file">Upload a CSV<input type="file" id="wb-file" accept=".csv,text/csv"></label>
+              <button type="button" class="btn btn-ghost" data-action="start-manual">Enter rows by hand</button>
+            </p>
+            <p class="small"><a class="textlink" href="{P}assets/downloads/workbench-template.csv" download>Download the CSV template</a></p>
+          </div>
+        </div>
+        <div id="wb-import" aria-live="polite"></div>
+        <h3>Reporting period and organisation</h3>
+        <div class="wb-form wb-period">
+          <label>Start <input type="date" id="wb-start" value="2025-01-01"></label>
+          <label>End <input type="date" id="wb-end" value="2025-12-31"></label>
+          <label>Organisation name <input type="text" id="wb-org" autocomplete="organization" placeholder="Optional"></label>
+        </div>
+        <details class="wb-help">
+          <summary>CSV columns</summary>
+          <dl class="rows">
+            <div><dt>site, account_id, document_ref</dt><dd>Where the activity happened, the meter or account, and the invoice or note number.</dd></div>
+            <div><dt>source_type</dt><dd>One of electricity, district_cooling, diesel, petrol, generator_diesel, refrigerant or water.</dd></div>
+            <div><dt>refrigerant_type</dt><dd>Needed for refrigerant rows, for example R-410A.</dd></div>
+            <div><dt>period_start, period_end</dt><dd>YYYY-MM-DD or DD/MM/YYYY. Arabic digits are accepted.</dd></div>
+            <div><dt>quantity, unit</dt><dd>Units include kWh, MWh, RTh, L, m3, US gal, imp gal, kg and t.</dd></div>
+          </dl>
+        </details>
+      </div>
+
+      <div class="wb-panel" data-panel="2" hidden></div>
+      <div class="wb-panel" data-panel="3" hidden></div>
+      <div class="wb-panel" data-panel="4" hidden></div>
+    </div>
+  </section>
+
+  <dialog class="wb-dialog" id="wb-dialog" aria-labelledby="wb-dialog-title">
+    <div class="wb-dialog-head"><h3 id="wb-dialog-title">Details</h3><button type="button" class="btn btn-ghost wb-close" data-action="close-dialog">Close</button></div>
+    <div class="wb-dialog-body"></div>
+  </dialog>
+  <script type="module" src="{P}assets/js/workbench/app.js"></script>

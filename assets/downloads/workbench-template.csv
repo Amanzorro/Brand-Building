@@ -1,0 +1,5 @@
+site,account_id,document_ref,source_type,refrigerant_type,period_start,period_end,quantity,unit,notes
+Head office,ELEC-0001,INV-0001,electricity,,2025-01-01,2025-01-31,12500,kWh,Example row. Replace or delete it.
+Head office,DC-0001,DC-INV-0001,district_cooling,,01/01/2025,31/01/2025,4200,RTh,Example row. Replace or delete it.
+Head office,GEN-01,DN-0001,generator_diesel,,2025-02-11,2025-02-11,400,L,Example row. Replace or delete it.
+Head office,AC-UNITS,MAINT-LOG,refrigerant,R-410A,2025-06-14,2025-06-14,3.5,kg,Example row. Replace or delete it.

@@ -1,0 +1,24 @@
+site,account_id,document_ref,source_type,refrigerant_type,period_start,period_end,quantity,unit,notes
+"Office, Abu Dhabi",ELEC-55120,E-2025-01,electricity,,01/01/2025,31/01/2025,"18,420",kWh,
+"Office, Abu Dhabi",ELEC-55120,E-2025-02,electricity,,01/02/2025,28/02/2025,"17,960",kWh,
+"Office, Abu Dhabi",ELEC-55120,E-2025-03,electricity,,01/03/2025,31/03/2025,"20,310",kWh,فاتورة شهر مارس
+"Office, Abu Dhabi",ELEC-55120,E-2025-04,electricity,,01/04/2025,30/04/2025,"23,880",kWh,
+"Office, Abu Dhabi",ELEC-55120,E-2025-05,electricity,,01/05/2025,31/05/2025,"27,450",kWh,
+"Office, Abu Dhabi",ELEC-55120,E-2025-06,electricity,,01/06/2025,30/06/2025,"31,200",kWh,
+"Office, Abu Dhabi",ELEC-55120,E-2025-07,electricity,,01/07/2025,31/07/2025,"33,940",kWh,
+"Office, Abu Dhabi",ELEC-55120,E-2025-08,electricity,,01/08/2025,31/08/2025,"34,120",kWh,
+"Office, Abu Dhabi",ELEC-55120,E-2025-09,electricity,,01/09/2025,30/09/2025,"30,070",kWh,
+"Office, Abu Dhabi",ELEC-55120,E-2025-10,electricity,,01/10/2025,31/10/2025,"25,630",kWh,
+"Office, Abu Dhabi",ELEC-55120,E-2025-11,electricity,,01/11/2025,30/11/2025,"21,040",kWh,
+"Office, Abu Dhabi",ELEC-55120,E-2025-12,electricity,,01/12/2025,31/12/2025,"18,990",kWh,
+"Office, Abu Dhabi",DC-2208,C-2025-Q1,district_cooling,,2025-01-01,2025-03-31,"21,300",ton-hours,Quarterly invoice
+"Office, Abu Dhabi",DC-2208,C-2025-Q2,district_cooling,,2025-04-01,2025-06-30,"39,800",ton-hours,Quarterly invoice
+"Office, Abu Dhabi",DC-2208,C-2025-Q3,district_cooling,,2025-07-01,2025-09-30,"46,100",ton-hours,Quarterly invoice
+"Office, Abu Dhabi",DC-2208,C-2025-Q4,district_cooling,,2025-10-01,2025-12-31,"27,900",ton-hours,Quarterly invoice
+"Office, Abu Dhabi",GEN-A,DN-٠٤٤١,generator_diesel,,١٨/٠٣/٢٠٢٥,١٨/٠٣/٢٠٢٥,٢٤٠,US gal,"مذكرة تسليم، مكتوبة باليد"
+"Office, Abu Dhabi",GEN-A,DN-0518,generator_diesel,,2025-09-02,2025-09-02,610,L,
+Pool cars,CARD-7,FC-2025-H1,petrol,,2025-01-01,2025-06-30,"3,215.5",L,Two pool cars
+Pool cars,CARD-7,FC-2025-H2,petrol,,2025-07-01,2025-12-31,"3,402.0",L,Two pool cars
+"Office, Abu Dhabi",SPLIT-AC,SVC-2025-07,refrigerant,R-32,2025-07-22,2025-07-22,2.5,kg,"Top-up after leak on unit 3, ""north"" side"
+"Office, Abu Dhabi",ELEC-55120,W-2025,water,,2025-01-01,2025-12-31,"2,140",m3,Annual water total
+"Office, Abu Dhabi",GEN-A,DN-0610,generator_diesel,,31/02/2025,31/02/2025,300,L,This row has an impossible date
