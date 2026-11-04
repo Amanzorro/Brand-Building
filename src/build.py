@@ -34,47 +34,59 @@ HOME_HEAD = '''  <meta property="og:title" content="Nokhada">
 # (fragment, output path, nav item marked current, <title>, meta description, extra <head> lines)
 PAGES = [
     ("home", "index.html", "index.html", "Nokhada",
-     "Nokhada deploys Claude Code inside UAE organisations to build emissions inventories, Climate Law and CBAM reporting, and climate-risk analysis from their own evidence.", HOME_HEAD),
-    ("industry", "industry.html", "industry.html", "Industry &amp; Exporters — Nokhada",
-     "GHG inventories from raw evidence, UAE Climate Law and NRCC reporting packs, CBAM embedded emissions and supplier data for UAE industry and exporters.", ""),
-    ("finance", "finance.html", "finance.html", "Banks &amp; Investors — Nokhada",
-     "Climate-risk management, financed emissions, transition planning and disclosures for UAE banks, insurers and asset managers.", ""),
-    ("real-estate", "real-estate.html", "real-estate.html", "Real Estate &amp; Infrastructure — Nokhada",
-     "Asset-level physical climate risk, energy, water and cooling performance, and green-building documentation for UAE real estate and infrastructure.", ""),
+     "Nokhada sets up Claude Code inside UAE organisations to produce emissions inventories, Climate Law, NRCC and CBAM reporting, and climate-risk analysis from their own records.", HOME_HEAD),
+    ("services", "services.html", "services.html", "Services — Nokhada",
+     "Emissions inventories, UAE Climate Law, NRCC and CBAM reporting, and climate-risk work for industry, financial institutions and real estate in the UAE.", ""),
     ("climate-rules", "climate-rules.html", "climate-rules.html", "UAE Climate Rules — Nokhada",
-     "A plain-language map of UAE climate rules: the Federal Climate Law, the NRCC, financial-sector climate principles and the EU CBAM.", ""),
-    ("security", "security.html", "security.html", "Security &amp; Data Residency — Nokhada",
-     "How Nokhada deploys Claude Code inside UAE organisations: your infrastructure, documented data flows and UAE data-protection compliance.", ""),
-    ("insights-index", "insights/index.html", "insights/index.html", "Insights — Nokhada",
-     "Essays on method, physical risk and the operating model behind credible climate reporting in the Gulf.", ""),
-    ("the-sieve", "insights/the-sieve.html", "insights/index.html", "The Sieve — Nokhada",
-     "How we check every reported emissions figure against its evidence before a verifier sees it.", ""),
-    ("heat-is-the-risk", "insights/heat-is-the-risk.html", "insights/index.html", "In the Gulf, heat is the balance-sheet risk — Nokhada",
-     "Physical climate risk in the UAE is mostly about heat, cooling and water, punctuated by rare floods.", ""),
-    ("own-your-methodology", "insights/own-your-methodology.html", "insights/index.html", "Own your methodology — Nokhada",
-     "Why your emissions logic should live in your own repository rather than in a vendor's settings screen.", ""),
+     "A plain-language list of UAE climate rules: the Federal Climate Law, the NRCC, financial-sector climate principles and the EU CBAM.", ""),
+    ("security", "security.html", "security.html", "Security — Nokhada",
+     "Where Nokhada deployments run, what we store, and the UAE data-protection rules we design around.", ""),
     ("try-index", "try/index.html", "try/index.html", "Try Nokhada",
-     "Two browser-based tools from Nokhada, plus what to expect when you work with us.", ""),
+     "Two browser-based tools, and what working with Nokhada involves.", ""),
     ("obligations-checker", "try/obligations-checker.html", "try/index.html", "Obligations Checker — Nokhada",
-     "Find out which UAE climate rules apply to your organisation, what data each one needs and what a diagnostic would cover.", ""),
+     "Find out which UAE climate rules apply to your organisation and what data each one needs.", ""),
     ("sieve-demo", "try/sieve-demo.html", "try/index.html", "Sieve Demo — Nokhada",
      "Watch 44 bills and logs become a verifier-ready emissions inventory, and trace any number back to its source.", ""),
 ]
 
 NAV = [
-    ("industry.html", "Industry"),
-    ("finance.html", "Finance"),
-    ("real-estate.html", "Real Estate"),
-    ("climate-rules.html", "Climate Rules"),
-    ("insights/index.html", "Insights"),
+    ("services.html", "Services"),
+    ("climate-rules.html", "Climate rules"),
     ("try/index.html", "Try it"),
 ]
+
+# Founder block on the homepage. Keep SHOW_TEAM = False until real details are supplied.
+# Never invent people. Each entry: name, role, experience (one sentence), linkedin URL, photo path.
+SHOW_TEAM = False
+TEAM = []
+
+
+def team_html():
+    if not SHOW_TEAM:
+        return ""
+    if not TEAM:
+        raise SystemExit("SHOW_TEAM is True but TEAM is empty. Add real founder details first.")
+    people = "\n".join(
+        f'''      <li class="person">
+        <img src="{{P}}{m["photo"]}" width="96" height="96" alt="{m["name"]}">
+        <div><h3>{m["name"]}</h3><p class="muted">{m["role"]}</p><p>{m["experience"]}</p>
+        <p><a href="{m["linkedin"]}">LinkedIn</a></p></div>
+      </li>''' for m in TEAM)
+    return f'''  <section id="team">
+    <div class="wrap">
+      <h2>Who we are</h2>
+      <ul class="people">
+{people}
+      </ul>
+    </div>
+  </section>
+'''
 
 
 def render(fragment, out, current, title, description, head_extra):
     depth = out.count("/")
     P = "../" * depth
-    body = (SRC / f"{fragment}.html").read_text(encoding="utf-8").replace("{P}", P)
+    body = (SRC / f"{fragment}.html").read_text(encoding="utf-8").replace("<!--TEAM-->", team_html()).replace("{P}", P)
     links = "\n".join(
         f'      <a href="{P}{href}"{" aria-current=\"page\"" if href == current else ""}>{label}</a>'
         for href, label in NAV
@@ -105,7 +117,7 @@ def render(fragment, out, current, title, description, head_extra):
     <nav class="nav" id="site-nav" aria-label="Primary">
 {links}
       <a class="lang" href="{P}ar/index.html" lang="ar" hreflang="ar">العربية</a>
-      <a class="btn btn-primary" href="{P}index.html#contact">Book a diagnostic</a>
+      <a class="btn btn-primary" href="{P}index.html#contact">Book a call</a>
     </nav>
   </div>
 </header>
@@ -119,22 +131,15 @@ def render(fragment, out, current, title, description, head_extra):
     <div class="footer-grid">
       <div>
         <a class="brand" href="{P}index.html"><img src="{P}assets/img/logo-mark.svg" width="30" height="30" alt=""><span class="brand-word">Nokhada</span></a>
-        <p class="small muted" style="margin-top:14px;max-width:34ch">Claude Code deployments for climate reporting and climate risk in the United Arab Emirates.</p>
+        <p class="small muted" style="margin-top:14px;max-width:34ch">Climate reporting and climate risk for UAE organisations. A nokhada was the captain of a pearling dhow.</p>
       </div>
       <div>
-        <h4>Who we serve</h4>
+        <h4>Site</h4>
         <ul>
-          <li><a href="{P}industry.html">Industry &amp; exporters</a></li>
-          <li><a href="{P}finance.html">Banks &amp; investors</a></li>
-          <li><a href="{P}real-estate.html">Real estate &amp; infrastructure</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="{P}climate-rules.html">UAE climate rules</a></li>
-          <li><a href="{P}security.html">Security &amp; data residency</a></li>
-          <li><a href="{P}insights/index.html">Insights</a></li>
+          <li><a href="{P}services.html">Services</a></li>
+          <li><a href="{P}climate-rules.html">Climate rules</a></li>
+          <li><a href="{P}try/index.html">Try it</a></li>
+          <li><a href="{P}security.html">Security</a></li>
           <li><a href="{P}ar/index.html" lang="ar">العربية</a></li>
         </ul>
       </div>
@@ -147,8 +152,7 @@ def render(fragment, out, current, title, description, head_extra):
       </div>
     </div>
     <div class="footer-legal">
-      <p>© <span data-year>2026</span> Nokhada. Nokhada is an independent firm and is not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic, PBC. Nothing on this site is legal, regulatory or investment advice.</p>
-      <p><a href="{P}security.html">Data protection</a></p>
+      <p>© <span data-year>2026</span> Nokhada. Independent firm, not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic, PBC. Nothing on this site is legal, regulatory or investment advice.</p>
     </div>
   </div>
 </footer>

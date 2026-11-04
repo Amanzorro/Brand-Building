@@ -14,13 +14,13 @@ Static HTML, CSS and JS with no framework and no npm. The English pages are gene
 ```
 src/pages/            Page bodies — edit these
 src/build.py          Shared header/nav/footer + page list; writes the pages below
-index.html …          Generated English pages (root, insights/, try/)
+index.html …          Generated English pages (root and try/)
 ar/index.html         Arabic home page (RTL, hand-written)
 assets/css/           style.css (tokens, light/dark) · tools.css (the two tools)
 assets/js/            main.js · obligations.js (checker) · sieve-demo.js (demo)
 assets/img/           Logo mark, wordmark, favicon (SVG)
 scripts/              check_links.py · build_artifact.py
-docs/                 RESEARCH.md · BRAND.md (not published)
+docs/                 RESEARCH.md · BRAND.md · drafts/ (not published)
 CLAUDE.md             Working rules for Claude agents and contributors
 vercel.json           Vercel headers; .vercelignore keeps docs/src/scripts off the site
 ```
@@ -46,7 +46,6 @@ CI (`.github/workflows/site-check.yml`) runs the build check, the link check and
 4. **Contact form:** it currently prepares the message for the visitor to copy and send from their own email. Point it at a real form endpoint or CRM.
 5. **Arabic copy:** get a native editor to review `ar/index.html`, then add Arabic versions of the inner pages.
 6. **Credentials:** add a team section with climate and verification credentials, such as GHG Protocol experience, ISO 14064 expertise and sector backgrounds. Buyers in this market will look for them.
-7. **Security pack:** `security.html` offers one. Prepare it before launch.
 
 ## The tools
 

@@ -33,5 +33,32 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/industry.html",
+      "destination": "/services.html#industry",
+      "statusCode": 301
+    },
+    {
+      "source": "/finance.html",
+      "destination": "/services.html#finance",
+      "statusCode": 301
+    },
+    {
+      "source": "/real-estate.html",
+      "destination": "/services.html#real-estate",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/insights/:path*",
+      "destination": "/",
+      "statusCode": 301
+    }
   ]
 }
