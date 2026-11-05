@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Workbench — Nokhada</title>
+  <meta name="description" content="Turn utility bills, district-cooling invoices, fuel records and refrigerant logs into a Scope 1 and 2 inventory in your browser, with every figure linked to its source row.">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Readex+Pro:wght@300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="Nokhada home">
+      <img src="../assets/img/logo-mark.svg" width="30" height="30" alt="">
+      <span class="brand-word">Nokhada</span><span class="brand-ar" lang="ar">نوخذة</span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="../services.html">Services</a>
+      <a href="../climate-rules.html">Climate rules</a>
+      <a href="../try/index.html" aria-current="page">Try it</a>
+      <a class="lang" href="../ar/index.html" lang="ar" hreflang="ar">العربية</a>
+      <a class="btn btn-primary" href="../index.html#contact">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <link rel="stylesheet" href="../assets/css/tools.css">
+  <link rel="stylesheet" href="../assets/css/workbench.css">
+  <section class="page-hero wb-hero">
+    <div class="wrap">
+      <h1>Workbench</h1>
+      <p class="lede">Turn electricity bills, district-cooling invoices, fuel records and refrigerant logs into a Scope 1 and 2 inventory. Every figure links to the row and document it came from.</p>
+      <p class="small muted">Demo edition: formulas and fixed checks, with no AI. It runs in your browser and sends nothing anywhere.</p>
+    </div>
+  </section>
+
+  <section class="wb" id="workbench">
+    <div class="wrap">
+      <noscript><p>The Workbench needs JavaScript turned on.</p></noscript>
+      <nav class="wb-steps" aria-label="Workbench steps">
+        <ol>
+          <li><button type="button" data-step="1" aria-current="step">1. Choose data</button></li>
+          <li><button type="button" data-step="2" disabled>2. Review</button></li>
+          <li><button type="button" data-step="3" disabled>3. Factors</button></li>
+          <li><button type="button" data-step="4" disabled>4. Results</button></li>
+        </ol>
+      </nav>
+      <div id="wb-status" class="wb-status" role="status" aria-live="polite"></div>
+
+      <div class="wb-panel" data-panel="1">
+        <h2>Choose data</h2>
+        <div class="wb-choices">
+          <div>
+            <h3>Demo pack</h3>
+            <p>Ras Saffa Logistics is a fictional company with 44 documents for 2025, 18 of them in Arabic. A few problems are planted in it for the checks to find.</p>
+            <p><button type="button" class="btn btn-nacre" data-action="load-demo">Load the demo pack</button></p>
+          </div>
+          <div>
+            <h3>Your own data</h3>
+            <p>Upload a CSV in the template's format, or type rows into an empty table. The file is read inside this tab and never leaves your device.</p>
+            <p class="wb-buttons">
+              <label class="btn btn-primary wb-file">Upload a CSV<input type="file" id="wb-file" accept=".csv,text/csv"></label>
+              <button type="button" class="btn btn-ghost" data-action="start-manual">Enter rows by hand</button>
+            </p>
+            <p class="small"><a class="textlink" href="../assets/downloads/workbench-template.csv" download>Download the CSV template</a></p>
+          </div>
+        </div>
+        <div id="wb-import" aria-live="polite"></div>
+        <h3>Reporting period and organisation</h3>
+        <div class="wb-form wb-period">
+          <label>Start <input type="date" id="wb-start" value="2025-01-01"></label>
+          <label>End <input type="date" id="wb-end" value="2025-12-31"></label>
+          <label>Organisation name <input type="text" id="wb-org" autocomplete="organization" placeholder="Optional"></label>
+        </div>
+        <details class="wb-help">
+          <summary>CSV columns</summary>
+          <dl class="rows">
+            <div><dt>site, account_id, document_ref</dt><dd>Where the activity happened, the meter or account, and the invoice or note number.</dd></div>
+            <div><dt>source_type</dt><dd>One of electricity, district_cooling, diesel, petrol, generator_diesel, refrigerant or water.</dd></div>
+            <div><dt>refrigerant_type</dt><dd>Needed for refrigerant rows, for example R-410A.</dd></div>
+            <div><dt>period_start, period_end</dt><dd>YYYY-MM-DD or DD/MM/YYYY. Arabic digits are accepted.</dd></div>
+            <div><dt>quantity, unit</dt><dd>Units include kWh, MWh, RTh, L, m3, US gal, imp gal, kg and t.</dd></div>
+          </dl>
+        </details>
+      </div>
+
+      <div class="wb-panel" data-panel="2" hidden></div>
+      <div class="wb-panel" data-panel="3" hidden></div>
+      <div class="wb-panel" data-panel="4" hidden></div>
+    </div>
+  </section>
+
+  <dialog class="wb-dialog" id="wb-dialog" aria-labelledby="wb-dialog-title">
+    <div class="wb-dialog-head"><h3 id="wb-dialog-title">Details</h3><button type="button" class="btn btn-ghost wb-close" data-action="close-dialog">Close</button></div>
+    <div class="wb-dialog-body"></div>
+  </dialog>
+  <script type="module" src="../assets/js/workbench/app.js"></script>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../index.html"><img src="../assets/img/logo-mark.svg" width="30" height="30" alt=""><span class="brand-word">Nokhada</span></a>
+        <p class="small muted" style="margin-top:14px;max-width:34ch">Climate reporting and climate risk for UAE organisations. A nokhada was the captain of a pearling dhow.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../services.html">Services</a></li>
+          <li><a href="../climate-rules.html">Climate rules</a></li>
+          <li><a href="../try/index.html">Try it</a></li>
+          <li><a href="../security.html">Security</a></li>
+          <li><a href="../ar/index.html" lang="ar">العربية</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@nokhada.ae">hello@nokhada.ae</a></li>
+          <li>Dubai · Abu Dhabi</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>© <span data-year>2026</span> Nokhada. Independent firm, not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic, PBC. Nothing on this site is legal, regulatory or investment advice.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

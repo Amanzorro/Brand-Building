@@ -18,6 +18,11 @@ assets/css/tools.css  Styles for the two interactive tools
 assets/js/main.js     Menu, scroll reveal, contact form, copy helper
 assets/js/obligations.js  Obligations Checker: questions, rules (evaluate()), live map
 assets/js/sieve-demo.js   Sieve demo: fictional evidence pack, calculations, checks, viewer
+assets/js/workbench/      Workbench (try/workbench.html): ES modules. Pure engine (units, factors,
+                          calc, sieve, estimate, csv) plus app.js for the page. factors.json is the
+                          factor library; demo-pack.js holds the fictional pack.
+assets/css/workbench.css  Workbench styles (also loads tools.css)
+tests/workbench/          node --test tests/workbench/*.test.mjs (CI runs this)
 scripts/check_links.py    Broken-link checker
 scripts/build_artifact.py Bundle for a claude.ai artifact preview (not needed for Vercel)
 docs/                 Research, brand guide, review, prompts; docs/drafts/ holds unpublished essays
@@ -29,6 +34,7 @@ docs/                 Research, brand guide, review, prompts; docs/drafts/ holds
 python3 src/build.py            # rebuild generated pages after editing src/pages or src/build.py
 python3 src/build.py --check    # CI runs this; fails if generated pages are stale
 python3 scripts/check_links.py  # CI runs this
+node --test tests/workbench/*.test.mjs  # CI runs this
 python3 -m http.server 8000     # preview at http://localhost:8000
 ```
 - To add a page, create `src/pages/<name>.html`, add a row to `PAGES` in `src/build.py`, add it to `NAV` or the footer if it should be linked, then build.
