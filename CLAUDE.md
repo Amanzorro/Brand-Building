@@ -14,17 +14,19 @@ src/build.py          Wraps each body in the shared header/nav/footer and writes
 *.html, try/          GENERATED. Don't hand-edit; run the build.
 ar/index.html         Arabic home page (RTL). Hand-written, NOT generated. Edit directly.
 assets/css/style.css  Design tokens + all site styles (light/dark, "Nacre" identity)
-assets/css/tools.css  Styles for the two interactive tools
+assets/css/tools.css  Obligations Checker styles, plus the tables, trace links and trace panels the Workbench uses
 assets/js/main.js     Menu, scroll reveal, contact form, copy helper
 assets/js/obligations.js  Obligations Checker: questions, rules (evaluate()), live map
-assets/js/sieve-demo.js   Sieve demo: fictional evidence pack, calculations, checks, viewer
 assets/js/workbench/      Workbench (try/workbench.html): ES modules. Pure engine (units, factors,
                           calc, sieve, estimate, csv) plus app.js for the page. factors.json is the
                           factor library; demo-pack.js holds the fictional pack.
 assets/css/workbench.css  Workbench styles (also loads tools.css)
 tests/workbench/          node --test tests/workbench/*.test.mjs (CI runs this)
+assets/img/workbench-results.{webp,jpg}  Homepage hero: Workbench results from the synthetic demo pack
+assets/downloads/         CSV template offered on the Workbench page
 scripts/check_links.py    Broken-link checker
 scripts/build_artifact.py Bundle for a claude.ai artifact preview (not needed for Vercel)
+scripts/hero_screenshot.mjs  Regenerates the homepage hero image with Playwright (needs a local server)
 docs/                 Research, brand guide, review, prompts; docs/drafts/ holds unpublished essays
                       (all kept off the public site by .vercelignore)
 ```
@@ -41,7 +43,8 @@ python3 -m http.server 8000     # preview at http://localhost:8000
 - In a page body, `{P}` is the path prefix back to the site root. Use it for every internal link and asset.
 - Changing the header, nav or footer means editing `src/build.py` (and `ar/index.html` by hand if the Arabic page needs it too).
 - The homepage founder block is hidden until `SHOW_TEAM = True` and `TEAM` holds real details in `src/build.py`. Never invent people.
-- Removed URLs are redirected in `vercel.json`. Add a redirect whenever you remove or rename a page.
+- Removed URLs are redirected in `vercel.json`. Add a redirect whenever you remove or rename a page. The old Sieve demo (`/try/sieve-demo.html`) redirects to the Workbench.
+- If you change the Workbench results view, regenerate the hero image: run `python3 -m http.server 8000`, then `node scripts/hero_screenshot.mjs`. It must only ever show the synthetic demo pack, and its alt text must say so.
 
 ## Design rules
 - Use the tokens in `assets/css/style.css` (`--ink`, `--surface`, `--accent`, `--nacre`, etc.). Never hard-code colours in components.
@@ -55,7 +58,8 @@ python3 -m http.server 8000     # preview at http://localhost:8000
 ## Content rules (important)
 - **No unverified numbers.** Don't add statistics, hours saved, ROI or client results unless they're sourced and approved. Label illustrative examples as illustrative.
 - **Regulation:** name the instrument and its date, and say "confirm with the authority". The checker's rules in `obligations.js` must stay consistent with `src/pages/climate-rules.html`. Nokhada does not give legal advice.
-- **Demo data is fictional.** Ras Saffa Logistics is invented, and the emission factors in `sieve-demo.js` are placeholders. Keep the "illustrative" labels.
+- **Demo data is fictional.** Ras Saffa Logistics is invented, and every document in `assets/js/workbench/demo-pack.js` is stamped SYNTHETIC SAMPLE. Its grid electricity and district-cooling factors are placeholders, used in demo mode only. Keep the "illustrative" and "placeholder" labels.
+- **Emission factors:** a factor in `assets/js/workbench/factors.json` is `cited` only if someone opened the official source and read the value; record the publisher, version, URL, retrieved date and gas basis (which IPCC AR). There is no default for UAE grid electricity or district cooling; the user supplies one and it is labelled `user-supplied`. `node --test` validates the library.
 - **Never impersonate** real companies, regulators or utilities. Use generic labels such as "Utility provider (illustrative)".
 - **Voice:** a careful verifier, not a marketer. Short, plain sentences, no greenwash words. See `docs/BRAND.md`.
 - **Arabic** copy is written for Arabic readers. Flag any new Arabic for native review in the PR description.
@@ -82,8 +86,8 @@ python3 -m http.server 8000     # preview at http://localhost:8000
 ## Open items (good tasks to pick up)
 - Arabic versions of the inner pages (only the home page exists in Arabic)
 - Real form endpoint for the contact form (it currently prepares a message for the visitor to copy)
-- Cited, official emission factors to replace the demo placeholders, if the demo should show real figures
+- Sourced UAE grid electricity and district-cooling factors, if the Workbench should offer a default (it has none today)
+- Native review of the Workbench's Arabic summary template (`assets/js/workbench/summary.js`) and Arabic demo documents
 - Founder details for the hidden team block (names, roles, experience, LinkedIn, photos)
 - Confirm the official source for every `[source to confirm]` on the climate rules page and in `SOURCES` in `obligations.js`
-- Rewrite the Sieve demo page under the copy rules, or replace it with the Workbench (see docs/PROMPTS.md, if present)
 - Trademark and domain clearance for "Nokhada"; replace the `hello@nokhada.ae` placeholder
