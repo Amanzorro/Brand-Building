@@ -59,6 +59,11 @@
       "source": "/insights/:path*",
       "destination": "/",
       "statusCode": 301
+    },
+    {
+      "source": "/try/sieve-demo.html",
+      "destination": "/try/workbench.html",
+      "statusCode": 301
     }
   ]
 }

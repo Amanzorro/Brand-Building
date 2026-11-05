@@ -45,8 +45,6 @@ PAGES = [
      "Two browser-based tools, and what working with Nokhada involves.", ""),
     ("obligations-checker", "try/obligations-checker.html", "try/index.html", "Obligations Checker — Nokhada",
      "Find out which UAE climate rules apply to your organisation and what data each one needs.", ""),
-    ("sieve-demo", "try/sieve-demo.html", "try/index.html", "Sieve Demo — Nokhada",
-     "Watch 44 bills and logs become a verifier-ready emissions inventory, and trace any number back to its source.", ""),
     ("workbench", "try/workbench.html", "try/index.html", "Workbench — Nokhada",
      "Turn utility bills, district-cooling invoices, fuel records and refrigerant logs into a Scope 1 and 2 inventory in your browser, with every figure linked to its source row.", ""),
 ]

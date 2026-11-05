@@ -41,6 +41,8 @@ These candidates clashed with existing UAE or GCC businesses during a quick sear
 ### Signature method: the Sieve
 An adversarial pre-verification check, named after the nests of sieves pearl merchants used to grade pearls. Every reported figure is traced, recomputed, checked for consistency and tested for plausibility. Verdicts are **Passes** or **Caught**. Its by-product is an evidence index verifiers can sample from directly. Use the name consistently.
 
+The public **Workbench** (`try/workbench.html`) runs a deterministic version of the Sieve in the browser: duplicates, missing and overlapping periods, out-of-period items, unit problems, outliers and factor status. It labels each finding by what the user has to do: **Needs your decision**, **Can't be calculated**, **Check** or **Note**. Use those labels when describing the Workbench, and Passes / Caught when describing a full engagement.
+
 ## Voice
 - **Like a careful verifier, not an activist or a marketer.** Precise, calm, evidence-first.
 - **Specific over superlative.** Say "reads district-cooling invoices in Arabic", not "AI-powered net zero".
@@ -98,6 +100,7 @@ All of these are free on Google Fonts.
 
 ### Imagery
 - Prefer real product output (terminal sessions, evidence indexes, risk registers) over stock photography
+- The homepage hero shows Workbench results from the synthetic demo pack (`assets/img/workbench-results.*`, made by `scripts/hero_screenshot.mjs`). Product screenshots must only ever show synthetic or approved data, and their alt text and caption must say so
 - If photography is used: Gulf coastline, heat shimmer, cooling plant, dhow details. No polar bears, wind turbines in fields or hands holding seedlings.
 
 ## Go-to-market notes for the UAE
